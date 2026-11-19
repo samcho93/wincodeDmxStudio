@@ -1,6 +1,6 @@
 // main.js — DMX Studio shell: top bar, tabs, playback faders, command line, keys, MIDI, the 40 Hz clock.
 import { store, PAGES, SLOTS } from './store.js';
-import { loadLibrary, getDef } from './library.js';
+import { loadLibrary, getDef, registerShow } from './library.js';
 import { Engine } from './engine.js';
 import { Outputs } from './outputs.js';
 import { h, $, fill, btn, select, dialog, toast } from './ui.js';
@@ -11,6 +11,7 @@ import { mountOut, mountSetup } from './v-out.js';
 import { EXAMPLES } from './examples.js';
 
 await loadLibrary();
+store.opening = registerShow;                                  // library fixtures of a show become profiles as it opens
 const restored = store.restore();
 const engine = new Engine(), out = new Outputs(engine);
 const app = { engine, store, out, tab: 'prog', views: {}, page: 0, curList: null };
@@ -24,19 +25,20 @@ clock.onmessage = () => { const now = performance.now(), dt = Math.min(200, now 
 /* ── 3D stage link ── */
 // Same origin as the simulator = the Virtual DMX cable reaches it: next to it on GitHub Pages, or under /studio/ on its local server.
 app.stageUrl = () => store.show.settings.stage || (location.pathname.startsWith('/studio/') ? `${location.origin}/stage.html` : location.hostname.endsWith('github.io') ? `${location.origin}/wincodeMovingHead/stage.html` : 'http://127.0.0.1:7740/stage.html');
-/** the Wincode fixtures of this patch as a stage file of the simulator */
+/** the fixtures of this patch that the simulator can show (Wincode models and library fixtures) as a stage file */
 app.stageFile = download => {
   const S = store.show, fx = S.fixtures.filter(f => getDef(f.def)?.sim).sort((a, b) => a.no - b.no), n = fx.length, perRow = n <= 6 ? n : Math.ceil(n / 2);
   const file = { app: 'wmh-stage', version: 1, name: S.name,
     fixtures: fx.map((f, i) => { const row = Math.floor(i / perRow), k = Math.min(perRow, n - row * perRow); return { id: f.id, x: ((i % perRow) - (k - 1) / 2) * (getDef(f.def).heads > 1 ? 2.2 : 1.5), z: -row * 1.8, rot: 0, mount: 'floor' }; }),
     workspace: { app: 'wmh-dmx-editor', version: 1, name: S.name, nextId: S.nextId, universes: S.universes.map(u => ({ name: u.name, out: 'none', outUniverse: u.outUniverse, host: u.host })),
-      fixtures: fx.map(f => ({ id: f.id, name: f.name, def: f.def, mode: f.mode, universe: f.universe, address: f.address })), functions: [], vc: { widgets: [] } } };
+      fixtures: fx.map(f => ({ id: f.id, name: f.name, def: f.def, mode: f.mode, universe: f.universe, address: f.address })), functions: [], vc: { widgets: [] },
+      library: Object.fromEntries(Object.entries(S.library || {}).filter(([id]) => fx.some(f => f.def === id))) } };   // the stage builds library fixtures from their descriptions
   if (download) { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(file, null, 1)], { type: 'application/json' })); a.download = (S.name || 'show').replace(/[^\w.-]+/g, '_') + '.stage.json'; a.click(); URL.revokeObjectURL(a.href); }
   return file;
 };
 $('#btnStage').addEventListener('click', () => {
   const url = app.stageUrl(), file = app.stageFile(false);
-  if (!file.fixtures.length) return toast('The patch has no Wincode fixtures for the 3D stage', true);
+  if (!file.fixtures.length) return toast('The patch has no fixtures the 3D stage can show (Wincode models or library fixtures)', true);
   let same = false; try { same = new URL(url, location.href).origin === location.origin; } catch (e) {}
   if (same) { try { localStorage.setItem('wmh.stage.v1', JSON.stringify(file)); } catch (e) {} }   // the stage opens what it saved last: hand it this patch
   else toast('The stage is on another site: open the studio at http://127.0.0.1:7740/studio/ (simulator server) for a live link, or download the stage file in Setup', true);

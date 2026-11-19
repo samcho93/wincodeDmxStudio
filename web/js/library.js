@@ -4,6 +4,7 @@
 //  A channel: { key, name, base, head, grp, def, fine?, fineOf?, ranges: [[from, to, label]] }
 //   grp: I intensity · P position · C colour · B beam · X control. Intensity channels merge HTP and follow the grand master.
 import { store } from './store.js';
+import { profileFromDesc } from './libimport.js';
 
 export const GROUPS = { I: 'Intensity', P: 'Position', C: 'Colour', B: 'Beam', X: 'Control' };
 const DEFS = new Map();
@@ -36,6 +37,14 @@ export async function loadLibrary() {
   try { const j = await (await fetch('fixtures/wincode.json')).json(); for (const f of j.fixtures) DEFS.set(f.id, f); } catch (e) { console.warn('fixture profiles not loaded', e); }
   for (const d of DEFS.values()) for (const m of Object.values(d.modes)) m.index = Object.fromEntries(m.channels.map((c, i) => [c.key, i]));
 }
+/** a library fixture (description, see libimport.js) as a patchable profile */
+export function registerDesc(D) {
+  if (DEFS.has(D.id)) return DEFS.get(D.id);
+  const d = profileFromDesc(D); for (const m of Object.values(d.modes)) m.index = Object.fromEntries(m.channels.map((c, i) => [c.key, i]));
+  DEFS.set(d.id, d); return d;
+}
+/** a show carries the descriptions of the library fixtures in its patch (show.library): make them known */
+export function registerShow(show) { for (const D of Object.values((show && show.library) || {})) try { registerDesc(D); } catch (e) { console.warn('fixture description skipped', D && D.id, e); } }
 export const library = () => [...DEFS.values()].sort((a, b) => (a.manufacturer === b.manufacturer ? a.model.localeCompare(b.model) : a.manufacturer === 'Wincode' ? -1 : 1));
 export const getDef = id => DEFS.get(id);
 export const modeOf = fx => { const d = DEFS.get(fx.def); return d ? d.modes[fx.mode] || d.modes[d.defaultMode] : null; };

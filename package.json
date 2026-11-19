@@ -6,7 +6,8 @@
   "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js",
-    "import-wincode": "node tools/import-wincode.mjs ../wincodeMovingHead/web/js/models/index.js"
+    "import-wincode": "node tools/import-wincode.mjs ../wincodeMovingHead/web/js/models/index.js",
+    "import-library": "node tools/import-library.mjs ../wincodeMovingHead"
   },
   "dependencies": {
     "ws": "^8.18.0"

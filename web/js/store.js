@@ -18,6 +18,7 @@ export function blankShow() {
     universes: [{ name: 'Universe 1', out: 'cable', outUniverse: 0, host: '127.0.0.1' }],
     fixtures: [], groups: [], palettes: [], effects: [], cuelists: [], playbacks: [],
     settings: { bpm: 120, bridge: 'ws://127.0.0.1:7740/ws', stage: '', midi: false },
+    library: {},         // descriptions of the library fixtures in the patch (libimport.js): the show opens anywhere
   };
 }
 
@@ -37,7 +38,9 @@ export const store = {
   remove(list, id) { this.show[list] = this.show[list].filter(x => x.id !== id); },
   autosave() { try { localStorage.setItem(LS, JSON.stringify(this.show)); } catch (e) {} },
   restore() { try { const j = JSON.parse(localStorage.getItem(LS) || 'null'); if (j && j.app === 'wdx-show') { this.show = this.fix(j); return true; } } catch (e) {} return false; },
-  fix(j) { const b = blankShow(); const s = Object.assign(b, j); s.settings = Object.assign(blankShow().settings, j.settings || {}); return s; },
+  /** called with every show that is opened, before anything looks at it (main.js registers its library fixtures) */
+  opening: null,
+  fix(j) { const b = blankShow(); const s = Object.assign(b, j); s.settings = Object.assign(blankShow().settings, j.settings || {}); if (this.opening) this.opening(s); return s; },
   load(json) { if (!json || json.app !== 'wdx-show') throw new Error('Not a DMX Studio show file'); this.mark(); this.show = this.fix(json); this.emit('show'); },
   reset() { this.mark(); this.show = blankShow(); this.emit('show'); },
   download() {

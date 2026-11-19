@@ -92,3 +92,8 @@ td input[type=text] { width: 100%; min-width: 90px; } tr.click { cursor: pointer
 .toast.show { opacity: 1; transform: translate(-50%, 0); } .toast.bad { border-color: var(--red); color: #ffb3b5; }
 kbd { background: #0b0d10; border: 1px solid var(--line); border-radius: 3px; padding: 0 5px; font: 11px Consolas, monospace; }
 a { color: var(--acc2); } a.btn { color: var(--text); text-decoration: none; }
+
+/* patch dialog: fixture library */
+.libhead { margin: 14px 0 6px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--dim); display: flex; gap: 8px; align-items: baseline; } .libhead .note { text-transform: none; letter-spacing: 0; }
+.liblist { height: 230px; overflow: auto; border: 1px solid var(--line); border-radius: 6px; background: #0b0d10; margin: 6px 0 4px; }
+.librow { display: flex; gap: 6px; align-items: baseline; padding: 4px 9px; border-bottom: 1px solid #171b20; cursor: pointer; white-space: nowrap; } .librow:hover { background: #161b21; } .librow.sel { background: #1a2532; }

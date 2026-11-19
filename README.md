@@ -66,6 +66,20 @@ npm run import-wincode
 Included: Wincode 250W BSW, 500W Frame, ApexPointe 420, Mega480 BSW, AquaVortex TB5 (all their channel modes), and generic
 dimmers, RGB / RGBW / RGBAW + UV, moving head spot / wash / CMY, scanner and dimmer packs.
 
+**Fixture library** (Patch → *+ Patch fixtures*): below the form, search the bundled
+[Open Fixture Library](https://open-fixture-library.org) — 610 fixtures of 127 manufacturers (MIT licence) — and click
+one to patch it. *Import GDTF / OFL file…* (or dropping files on the dialog) adds a fixture from a **GDTF** file or an
+Open Fixture Library JSON; imported fixtures stay in the browser's library. A library fixture gets the programmer's
+attribute groups, colour mixing (per pixel or cell where it has several), effects and function lists from its channel
+chart. The show file carries the descriptions of the library fixtures it uses, so it opens anywhere, and **🎭 3D Stage**
+hands them to the simulator, which shows them with a stand-in body.
+
+The library data and the two importers are copies of the simulator's, so that both programs read a fixture the same way:
+
+```bash
+npm run import-library
+```
+
 Examples (top bar → Load) are built from the profiles, with groups, palettes, three cue lists, five effects and a page
 of playbacks each: the showcase with all five models (the patch of the simulator's "All models" stage), four of each
 moving head, two TB5 bars, and a 48-fixture rig across five universes.
