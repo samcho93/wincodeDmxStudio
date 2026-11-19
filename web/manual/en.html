@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wincode DMX Studio — User Manual</title>
+<link rel="stylesheet" href="manual.css">
+</head>
+<body>
+<div class="wrap">
+<nav class="toc">
+  <div class="brand">WINCODE</div><div class="sub">DMX Studio · User Manual</div>
+  <div class="lang"><a class="on" href="en.html">English</a><a href="ko.html">한국어</a></div>
+  <a href="#intro">1. What DMX Studio is</a>
+  <a href="#start">2. Quick start</a>
+  <a href="#screen">3. The screen</a>
+  <a href="#patch">4. Patch</a>
+  <a href="#select">5. Selecting fixtures</a>
+  <a href="#prog">6. The programmer</a>
+  <a href="#pools">7. Groups and palettes</a>
+  <a href="#cues">8. Cue lists</a>
+  <a href="#timecode">9. Timecode and audio</a>
+  <a href="#fx">10. Effects</a>
+  <a href="#play">11. Playbacks</a>
+  <a href="#cmd">12. Command line</a>
+  <a href="#out">13. DMX output monitor</a>
+  <a href="#setup">14. Universes and lines</a>
+  <a href="#sim">15. The 3D simulator</a>
+  <a href="#files">16. Show files, undo, examples</a>
+  <a href="#lib">17. Fixture library</a>
+  <a href="#keys">18. Keys and MIDI</a>
+  <a href="#rules">19. How values are merged</a>
+  <a href="#faq">20. Troubleshooting</a>
+  <a href="../">← Open DMX Studio</a>
+</nav>
+<main>
+<h1>Wincode DMX Studio <small>User Manual · a lighting console in the browser</small></h1>
+
+<h2 id="intro">1. What DMX Studio is</h2>
+<p>DMX Studio is a lighting console that runs in a web browser. You patch fixtures, build looks in a <b>programmer</b>, store them as <b>groups</b>, <b>palettes</b> and <b>cues</b>, add <b>effects</b>, and play everything back from <b>faders</b>. Its working method is that of professional consoles such as grandMA, ChamSys MagicQ, Avolites Titan, ETC Eos and Onyx, so what you learn here carries over.</p>
+<p>The DMX it produces goes to the Wincode 3D simulator over a <b>Virtual DMX cable</b>, or to real fixtures through <b>Art-Net</b>, <b>sACN</b> or a <b>DMX USB Pro</b> widget. A show starts with one universe of 512 channels and can grow to 64 universes (32 768 channels).</p>
+<figure><img src="img/01-overview.jpg" alt="DMX Studio, whole window"><figcaption>The whole window: top bar, tabs, the Programmer tab, the command line and the playback faders.</figcaption></figure>
+<table>
+  <tr><th>Address</th><th>What</th></tr>
+  <tr><td><a href="https://samcho93.github.io/wincodeDmxStudio/">samcho93.github.io/wincodeDmxStudio</a></td><td>DMX Studio (nothing to install)</td></tr>
+  <tr><td><a href="https://samcho93.github.io/wincodeMovingHead/stage.html">samcho93.github.io/wincodeMovingHead/stage.html</a></td><td>The 3D stage it controls</td></tr>
+</table>
+<p>Use Chrome or Edge. Web Serial (DMX USB Pro) and Web MIDI are not available in every browser.</p>
+
+<h2 id="start">2. Quick start</h2>
+<p>The first time you open DMX Studio it loads the example <i>Wincode showcase</i>: six fixtures, palettes, three cue lists, five effects and a page of playbacks. Five minutes with it shows the whole method.</p>
+<ol class="steps">
+  <li><b>Open the 3D stage.</b> Press <span class="b">🎭 3D Stage</span> in the top bar. A second window opens with the six fixtures; they follow the console from now on. Put the two windows side by side.</li>
+  <li><b>Play a cue list.</b> At the bottom, press <span class="b">GO</span> on the playback <i>Main show</i>. The fixtures fade to cue 1. Press GO again for cue 2, and so on.</li>
+  <li><b>Take control by hand.</b> Type <code>1 thru 6 @ 50</code> in the command line and press Enter: all six fixtures go to 50 %. What you set by hand is in the <i>programmer</i> and overrides the playback.</li>
+  <li><b>Use a palette.</b> Click the colour palette <span class="b">Blue</span>. Each fixture turns blue in its own way — a colour wheel on one, CMY on another, RGB on the bar.</li>
+  <li><b>Record it.</b> Press <span class="b">Record cue</span>: the look becomes the next cue of the current cue list.</li>
+  <li><b>Let go.</b> Press <span class="b">Clear</span> (or <kbd>Esc</kbd>). The programmer empties and the playback is back in charge.</li>
+</ol>
+
+<h2 id="screen">3. The screen</h2>
+<table>
+  <tr><th>Area</th><th>What is there</th></tr>
+  <tr><td><b>Top bar</b></td><td>Show name · New / Open / Save · example list and Load · undo / redo · 3D Stage · Manual · output status · grand master (GM) · Blackout</td></tr>
+  <tr><td><b>Tabs</b></td><td>Programmer · Patch · Cue lists · Effects · DMX output · Setup. On the right: how many fixtures are selected and how many are in the programmer.</td></tr>
+  <tr><td><b>Work area</b></td><td>The selected tab.</td></tr>
+  <tr><td><b>Command line</b></td><td>Typed commands (section 12). The answer appears on the right.</td></tr>
+  <tr><td><b>Playbacks</b></td><td>Four pages (P1–P4) of ten faders. Always visible, whatever tab is open.</td></tr>
+</table>
+<p>The pill in the top bar shows the output: <i>1 / 1 universes out</i> in green means every universe that has a line is being sent; red tells you what is missing (bridge offline, serial not connected).</p>
+
+<h2 id="patch">4. Patch</h2>
+<p>The patch says which fixture is at which DMX address. Everything else — selections, palettes, cues — refers to <i>fixtures</i>, not to addresses, so you can re-address a fixture without breaking a show.</p>
+<figure><img src="img/02-patch.jpg" alt="Patch tab"><figcaption>The Patch tab. The header counts the fixtures and the channels in use.</figcaption></figure>
+<table>
+  <tr><th>Column</th><th>Meaning</th></tr>
+  <tr><td>No</td><td>Fixture number: what the command line and the fixture tiles use. Must be unique.</td></tr>
+  <tr><td>Name</td><td>Free text, shown on the tile.</td></tr>
+  <tr><td>Fixture / Mode</td><td>The profile and its channel mode. Changing the mode changes the footprint.</td></tr>
+  <tr><td>Universe / Address</td><td>Where the first channel is (1–512).</td></tr>
+  <tr><td>Channels</td><td>First – last address and the footprint. <b>overlap</b> in red means two fixtures share channels or the fixture runs past 512.</td></tr>
+  <tr><td>✕</td><td>Remove from the patch (and from every group).</td></tr>
+</table>
+<h3>Patching fixtures</h3>
+<figure><img src="img/03-patch-dialog.jpg" alt="Patch fixtures dialog"><figcaption>+ Patch fixtures.</figcaption></figure>
+<ol>
+  <li>Press <span class="b">+ Patch fixtures</span>.</li>
+  <li>Choose the fixture and its mode. The number of channels is shown next to each mode.</li>
+  <li>Enter the quantity. Leave <i>Start address</i> at 0 to take the first free address.</li>
+  <li>Press <span class="b">Patch</span>. The fixtures are numbered on from the highest number in use and addressed one after another.</li>
+</ol>
+<div class="note">When a universe is full the next fixture goes to the next universe, and a new universe is created if there is none (up to 64). A new universe has no line yet: give it one in Setup.</div>
+
+<h2 id="select">5. Selecting fixtures</h2>
+<p>You always select first and set values second. The selection has an <b>order</b> — the order in which you picked the fixtures — and Fan and the effects use it.</p>
+<table>
+  <tr><th>How</th><th>What it does</th></tr>
+  <tr><td>Click a tile</td><td>Selects that fixture alone.</td></tr>
+  <tr><td>Ctrl-click or Shift-click a tile</td><td>Adds it to the selection, or removes it.</td></tr>
+  <tr><td><span class="b">All</span> <span class="b">None</span> <span class="b">Odd</span> <span class="b">Even</span> <span class="b">Invert</span></td><td>Whole rig, nothing, every other fixture, the opposite of the selection.</td></tr>
+  <tr><td><span class="b">◀</span> <span class="b">▶</span> or <kbd>←</kbd> <kbd>→</kbd></td><td>Previous / next fixture — step through a rig while focusing.</td></tr>
+  <tr><td>Click a group</td><td>Selects its fixtures; Ctrl-click adds them.</td></tr>
+  <tr><td>Command line</td><td><code>1 thru 6</code>, <code>1 + 3 + 5</code>, <code>group 2</code>, <code>6 thru 1</code> (reversed order).</td></tr>
+</table>
+<p>A tile shows the fixture number, its name, a yellow bar for its intensity and a dot in its present colour. An orange frame means selected; a brown background means the fixture has values in the programmer.</p>
+
+<h2 id="prog">6. The programmer</h2>
+<p>The programmer is your pair of hands. Whatever you set here goes straight to the output and <b>wins over every playback</b>, until you clear it. Its content is what gets recorded into palettes and cues.</p>
+<p>Attributes are sorted into five groups, as on a console:</p>
+<table>
+  <tr><th>Group</th><th>Attributes</th></tr>
+  <tr><td><b>Intensity</b></td><td>Dimmer</td></tr>
+  <tr><td><b>Position</b></td><td>Pan, tilt, pan / tilt speed</td></tr>
+  <tr><td><b>Colour</b></td><td>Colour wheel, CMY, RGB, CTO, colour macros</td></tr>
+  <tr><td><b>Beam</b></td><td>Shutter / strobe, zoom, focus, gobos, prisms, frost, framing blades</td></tr>
+  <tr><td><b>Control</b></td><td>Reset, lamp and other service channels</td></tr>
+</table>
+<h3>Intensity</h3>
+<figure><img src="img/04-prog-intensity.jpg" alt="Programmer, intensity"><figcaption>Six fixtures selected, dimmer at 200. An attribute printed in orange is in the programmer.</figcaption></figure>
+<p>Each attribute has a slider, its value (0–255) and a <b>×</b> that releases it from the programmer. <span class="b">Full</span> and <span class="b">Zero</span> set the dimmer of the selection in one press. Shutters rest <i>open</i>, so raising the dimmer is enough to get light.</p>
+<h3>Position</h3>
+<figure><img src="img/05-prog-position.jpg" alt="Programmer, position"><figcaption>The XY pad: left–right is pan, up–down is tilt.</figcaption></figure>
+<p>Drag in the pad to move the selection. Fixtures with a fine channel are driven in 16 bits automatically — you never set a fine channel yourself.</p>
+<h3>Colour</h3>
+<figure><img src="img/06-prog-colour.jpg" alt="Programmer, colour"><figcaption>The hue bar and the swatches mix the colour; below them every colour channel of the selection.</figcaption></figure>
+<p>The hue bar and the swatches work on every fixture that can mix colour: the studio sends RGB to an RGB fixture and the matching CMY values to a CMY fixture. Fixtures with only a colour wheel use the <i>Colour</i> slider or its function list.</p>
+<h3>Beam and the function lists</h3>
+<figure><img src="img/07-prog-beam.jpg" alt="Programmer, beam"><figcaption>Under a slider, the function list of that channel: pick “Gobo 3” or “Strobe” instead of remembering a DMX value.</figcaption></figure>
+<p>A channel that does several things — a gobo wheel, a shutter, a prism — has a list <i>— functions —</i> under its slider, taken from the fixture's manual. Choosing an entry sets a value inside that range.</p>
+<h3>Fan, Highlight, Clear</h3>
+<table>
+  <tr><th>Control</th><th>What it does</th></tr>
+  <tr><td><b>Fan</b></td><td>With Fan at, say, ±30, the next value you set is spread across the selection: the first fixture gets 30 less, the last 30 more, the ones between in equal steps. Set pan with Fan on and the beams open like a fan. Put the slider back to <i>off</i> afterwards.</td></tr>
+  <tr><td><b>Highlight</b> (<kbd>H</kbd>)</td><td>The selected fixtures go to full intensity while it is on — to see which fixture you are working on. Nothing is recorded.</td></tr>
+  <tr><td><b>×</b> on an attribute</td><td>Releases that attribute only.</td></tr>
+  <tr><td><b>Clear</b> (<kbd>Esc</kbd>)</td><td>First press empties the programmer; a second press clears the selection.</td></tr>
+  <tr><td><b>Record cue</b> (<kbd>R</kbd>)</td><td>Stores the programmer as the next cue (section 8).</td></tr>
+</table>
+
+<h2 id="pools">7. Groups and palettes</h2>
+<p>Groups and palettes are the building blocks that make programming fast. Build them once, then make cues by clicking.</p>
+<h3>Groups</h3>
+<ul>
+  <li><b>Record:</b> select fixtures, then click the dashed <span class="b">+</span> at the end of the Groups pool.</li>
+  <li><b>Use:</b> click the group (Ctrl-click adds to the selection). The order of the fixtures is kept.</li>
+  <li><b>Edit:</b> right-click → rename, <i>Update from selection</i>, or delete.</li>
+</ul>
+<h3>Palettes</h3>
+<p>There is one pool per kind: intensity, position, colour and beam. A palette holds the values of that kind for each fixture — and applies to any other fixture <i>of the same type and mode</i> as well, so a colour palette made on one Mega480 works on all of them.</p>
+<ul>
+  <li><b>Record:</b> set the values in the programmer, then click <span class="b">+</span> in the pool of that kind. Only values of that kind are taken.</li>
+  <li><b>Apply:</b> select fixtures, click the palette. Its values go into the programmer.</li>
+  <li><b>Edit:</b> right-click → rename, <i>Update from programmer</i>, or delete.</li>
+</ul>
+<figure><img src="img/08-palette-edit.jpg" alt="Palette dialog"><figcaption>Right-click a palette or a group to edit it.</figcaption></figure>
+<div class="note">A cue recorded from a palette stores the <i>values</i>, not a link to the palette: changing the palette later does not change cues already recorded.</div>
+
+<h2 id="cues">8. Cue lists</h2>
+<p>A cue list is a sequence of looks. A cue stores the programmer's values with a fade time; pressing GO moves from one cue to the next.</p>
+<figure><img src="img/09-cues.jpg" alt="Cue lists tab"><figcaption>The Cue lists tab. Left: the lists. Right: the cues of the selected list; the green row is the cue on stage.</figcaption></figure>
+<h3>Recording a cue</h3>
+<ol>
+  <li>Open the Cue lists tab and click the list to record into (or let the studio create <i>Main</i>).</li>
+  <li>Build the look in the programmer.</li>
+  <li>Press <span class="b">Record cue</span> (<kbd>R</kbd>). The cue is added at the end, with a 2-second fade. If the list is not on a playback yet, it is put on the first free one.</li>
+  <li>Press <span class="b">Clear</span> and build the next look.</li>
+</ol>
+<h3>The cue table</h3>
+<table>
+  <tr><th>Column</th><th>Meaning</th></tr>
+  <tr><td>No</td><td>Cue number; decimals are allowed (2.5 goes between 2 and 3). The list sorts itself.</td></tr>
+  <tr><td>Fade s</td><td>Time to fade into the cue.</td></tr>
+  <tr><td>Delay s</td><td>Wait after GO before the fade starts.</td></tr>
+  <tr><td>Trigger</td><td><b>GO button</b>: waits for you. <b>Follow</b>: starts as soon as the previous cue has faded in. <b>Wait</b>: starts the given seconds after that.</td></tr>
+  <tr><td>Time s</td><td>Timecode (section 9). Empty = not timed.</td></tr>
+  <tr><td>Effect</td><td>An effect that runs while this cue is active (section 10).</td></tr>
+  <tr><td>Content</td><td>How many fixtures and values the cue holds.</td></tr>
+  <tr><td>▶</td><td>Go straight to this cue.</td></tr>
+  <tr><td>Load</td><td>Copies the cue into the programmer so that you can change it.</td></tr>
+  <tr><td>Update</td><td>Merges the programmer into this cue.</td></tr>
+  <tr><td>✕</td><td>Deletes the cue.</td></tr>
+</table>
+<h3>Tracking</h3>
+<p>With <b>Tracking</b> on (the default, as on a theatre desk) a cue only needs to hold what <i>changes</i>: every value set by an earlier cue stays until a later cue changes it. So “Red fan” can hold just a colour and a position, and the intensity of cue 1 carries through. With Tracking off, each cue stands alone and anything it does not contain goes back to its default.</p>
+<h3>Loop</h3>
+<p>With <b>Loop</b> on, GO on the last cue returns to the first. A looping list whose cues use <i>Wait</i> triggers is a chase that runs by itself — the example <i>Colour chase</i> is built that way.</p>
+<h3>Editing a cue</h3>
+<ol><li>Press <span class="b">Load</span> on the cue.</li><li>Change what you want in the programmer.</li><li>Press <span class="b">Update</span> on the same cue, then <span class="b">Clear</span>.</li></ol>
+
+<h2 id="timecode">9. Timecode and audio</h2>
+<p>A cue list can run against the clock: give each cue a <b>Time</b> in seconds from the start, and press <span class="b">▶ Run</span>. The cues fire by themselves at their times.</p>
+<figure><img src="img/10-timecode.jpg" alt="A timed cue list"><figcaption>The example “Timecode demo”: five cues at 0, 4, 8, 12 and 16 seconds.</figcaption></figure>
+<ul>
+  <li><span class="b">🎵 Add audio</span> attaches a sound file. It is played with the run and <i>becomes the clock</i>, so the lights stay in step with the music.</li>
+  <li>The audio file is stored in this browser only; it is not part of the show file. Add it again on another computer.</li>
+  <li>While running, the playback shows the elapsed time. <span class="b">■ Stop</span> ends the run.</li>
+</ul>
+
+<h2 id="fx">10. Effects</h2>
+<p>An effect generates values continuously instead of holding them still: a dimmer chase, a circle, a rainbow.</p>
+<figure><img src="img/11-effects.jpg" alt="Effects tab"><figcaption>The Effects tab.</figcaption></figure>
+<table>
+  <tr><th>Setting</th><th>Meaning</th></tr>
+  <tr><td>Type</td><td><b>Dimmer</b> · <b>Pan</b> · <b>Tilt</b> · <b>Pan / tilt circle</b> · <b>Pan / tilt figure 8</b> · <b>Colour rainbow</b> · <b>Zoom</b> · <b>Focus</b></td></tr>
+  <tr><td>Wave</td><td>The shape of one cycle: sine, triangle, ramp up, ramp down, square, pulse, chase (one fixture at a time), random.</td></tr>
+  <tr><td>Rate</td><td>Cycles per minute. <span class="b">Tap</span> twice in time sets it.</td></tr>
+  <tr><td>Size</td><td>How far the value swings, in DMX steps.</td></tr>
+  <tr><td>Centre</td><td>Dimmer only: the level it swings around.</td></tr>
+  <tr><td>Spread</td><td>Phase across the fixtures. 0 = all together, 360 = one complete wave across the selection, 720 = two.</td></tr>
+  <tr><td>Direction</td><td>Forward or backward.</td></tr>
+  <tr><td>Fixtures</td><td><span class="b">Use the selection</span> takes the current selection, in its order.</td></tr>
+</table>
+<p>Position, zoom and focus effects move <i>around the value the fixture already has</i>, so the same circle works wherever the fixture points. Dimmer and rainbow effects set the value outright.</p>
+<h3>Making and running an effect</h3>
+<ol>
+  <li>Select the fixtures.</li>
+  <li>Press <span class="b">+ New effect</span> and set its type.</li>
+  <li>Press <span class="b">▶ Run</span>: the effect is put on a free playback and started. Its fader sets its size.</li>
+</ol>
+<p>To make an effect part of a cue, choose it in the cue's <i>Effect</i> column: it then runs for as long as that cue is active.</p>
+
+<h2 id="play">11. Playbacks</h2>
+<p>The playbacks are how a show is run. There are four pages of ten; each playback holds a <b>cue list</b>, an <b>effect</b> or a <b>group master</b>.</p>
+<figure><img src="img/12-playbacks.png" alt="Playback faders"><figcaption>Page 1. A green frame means the playback is running; the green line is the progress of the fade. “Rainbow” runs at 70 %.</figcaption></figure>
+<table>
+  <tr><th>Control</th><th>What it does</th></tr>
+  <tr><td><b>GO</b></td><td>Cue list: next cue. Effect: start.</td></tr>
+  <tr><td><b>Back</b></td><td>Previous cue, with a short fade.</td></tr>
+  <tr><td><b>Off</b></td><td>Releases the playback: its values leave the stage.</td></tr>
+  <tr><td><b>Flash</b></td><td>While held: the playback at full, whatever its fader. If it was off, it is on only while you hold.</td></tr>
+  <tr><td><b>Fader</b></td><td>Cue list: the intensity of this playback. Effect: its size. Group master: the intensity limit of that group. Raising a fader from zero starts the playback; pulling it to zero releases it.</td></tr>
+  <tr><td><b>P1–P4</b></td><td>Playback pages.</td></tr>
+</table>
+<h3>Assigning a playback</h3>
+<figure><img src="img/13-assign.jpg" alt="Assign dialog"><figcaption>Click the name of a playback to assign it.</figcaption></figure>
+<p>Click the name (or <i>empty</i>). Choose what it runs — cue list, effect or group master — and the item, then <span class="b">Assign</span>. <span class="b">Clear</span> empties the slot.</p>
+<h3>Grand master and blackout</h3>
+<p><b>GM</b> scales every intensity channel of the rig. <b>Blackout</b> (<kbd>B</kbd>) takes all intensities to zero at once; positions, colours and gobos keep running, so the look is back the moment you release it.</p>
+
+<h2 id="cmd">12. Command line</h2>
+<p>Press <kbd>Enter</kbd> to jump to the command line, type, and press <kbd>Enter</kbd> again.</p>
+<table>
+  <tr><th>Type</th><th>Result</th></tr>
+  <tr><td><code>1 thru 6</code></td><td>Select fixtures 1 to 6 (<code>t</code>, <code>-</code> and <code>&gt;</code> work too)</td></tr>
+  <tr><td><code>6 thru 1</code></td><td>The same fixtures in reverse order</td></tr>
+  <tr><td><code>1 + 3 + 5</code></td><td>Select fixtures 1, 3 and 5</td></tr>
+  <tr><td><code>group 2</code> or <code>g 2</code></td><td>Select the second group of the pool</td></tr>
+  <tr><td><code>1 thru 6 @ 80</code></td><td>Select and set the intensity to 80 %</td></tr>
+  <tr><td><code>group 2 @ full</code></td><td>Group 2 at 100 %</td></tr>
+  <tr><td><code>@ 30</code></td><td>The current selection at 30 %</td></tr>
+  <tr><td><code>go 1</code> · <code>back 1</code> · <code>off 1</code></td><td>GO, Back, Off on playback 1 of the current page</td></tr>
+  <tr><td><code>clear</code></td><td>Same as the Clear button</td></tr>
+</table>
+
+<h2 id="out">13. DMX output monitor</h2>
+<figure><img src="img/14-output.jpg" alt="DMX output tab"><figcaption>One universe, 512 channels. Orange numbers are patched channels; an orange line on the left marks the first channel of a fixture.</figcaption></figure>
+<p>The monitor shows what is on the wire right now, after every merge and the grand master. Pick the universe at the top right. Hover over a cell to see which fixture and which function it belongs to. Use it to check a patch and to find out why a fixture does not react.</p>
+
+<h2 id="setup">14. Universes and lines</h2>
+<figure><img src="img/15-setup.jpg" alt="Setup tab"><figcaption>Setup: universes at the top, the lines below.</figcaption></figure>
+<p>Each universe is sent on its own <b>line</b>:</p>
+<table>
+  <tr><th>Line</th><th>Use it for</th><th>Needs</th></tr>
+  <tr><td>Off</td><td>A universe you are only preparing</td><td>—</td></tr>
+  <tr><td>Virtual DMX cable</td><td>The Wincode 3D simulator</td><td>Both pages opened from the same site (section 15). <i>Universe</i> is the cable universe the simulator listens on, 0 for the first.</td></tr>
+  <tr><td>Art-Net</td><td>Art-Net nodes and fixtures</td><td>A bridge. <i>Universe</i> is the Art-Net port address (0-based); <i>Host</i> the node's IP, the broadcast address, or 127.0.0.1.</td></tr>
+  <tr><td>sACN / E1.31</td><td>sACN nodes and fixtures</td><td>A bridge. <i>Universe</i> 1–63999; <i>Host</i> an IP address, or <code>multicast</code>.</td></tr>
+  <tr><td>DMX USB Pro</td><td>One universe through an ENTTEC-compatible USB widget</td><td>Chrome or Edge. Press <span class="b">Connect…</span> and choose the port.</td></tr>
+</table>
+<h3>The bridge</h3>
+<p>A web page cannot send network packets itself, so Art-Net and sACN go through a small program — the <b>bridge</b> — that the page talks to. Either of these is a bridge:</p>
+<ul>
+  <li>The Wincode simulator's server: <code>ws://127.0.0.1:7740/ws</code></li>
+  <li>DMX Studio's own server, started with <code>npm start</code> in its folder: <code>ws://127.0.0.1:7750/ws</code></li>
+</ul>
+<p>Enter the address under <i>Lines → Bridge</i>. The pill next to it says <i>connected</i> once a universe is set to Art-Net or sACN and the bridge answers.</p>
+<h3>More universes</h3>
+<p><span class="b">+ Universe</span> adds 512 channels at a time, up to 64 universes. The last universe can be removed with ✕ when nothing is patched on it.</p>
+<h3>MIDI</h3>
+<figure><img src="img/16-setup-stage.jpg" alt="Setup, MIDI and 3D stage"><figcaption>Setup, further down: MIDI, the 3D stage and the key list.</figcaption></figure>
+<p>Tick <i>Control the playbacks from a MIDI surface</i> and allow MIDI access when the browser asks. The mapping is fixed (section 18) and follows the current playback page.</p>
+
+<h2 id="sim">15. The 3D simulator</h2>
+<p>DMX Studio and the Wincode simulator are two programs that work as one: the studio is the console, the simulator's <b>stage</b> is the rig.</p>
+<figure><img src="img/17-stage.jpg" alt="The 3D stage following DMX Studio"><figcaption>The simulator's stage following cue 4 of the showcase, “Amber gobos”.</figcaption></figure>
+<ol class="steps">
+  <li>Patch your Wincode fixtures in DMX Studio (or load an example).</li>
+  <li>Press <span class="b">🎭 3D Stage</span>. The studio hands its patch to the stage page and opens it: the same fixtures, at the same addresses, appear on the stage.</li>
+  <li>Work in the studio. The stage follows the Virtual DMX cable while it is not playing a show of its own.</li>
+</ol>
+<p>From the simulator, the <span class="b">🎚 DMX Studio</span> button opens the studio.</p>
+<div class="note"><b>Both pages must come from the same site</b> — a browser only lets pages of one site talk to each other this way.
+<ul>
+  <li><b>On the web:</b> both are on <code>samcho93.github.io</code>; nothing to do.</li>
+  <li><b>On your own computer:</b> start the simulator (<code>npm start</code> in its folder) and open the studio at <code>http://127.0.0.1:7740/studio/</code>. The simulator's server serves the studio from the folder next to it.</li>
+  <li><b>Otherwise:</b> use <i>Setup → Download stage file</i>, open that file on the stage page, and send Art-Net through the bridge.</li>
+</ul></div>
+<p>After you change the patch, press 🎭 3D Stage again to hand the new patch over. Generic fixtures have no 3D model and do not appear on the stage.</p>
+
+<h2 id="files">16. Show files, undo, examples</h2>
+<table>
+  <tr><th>Button</th><th>What it does</th></tr>
+  <tr><td><b>Save</b></td><td>Downloads the show as <code>name.wdx.json</code>.</td></tr>
+  <tr><td><b>Open</b></td><td>Opens a show file.</td></tr>
+  <tr><td><b>New</b></td><td>Starts an empty show with one universe.</td></tr>
+  <tr><td><b>Load</b> (next to the example list)</td><td>Replaces the show with the chosen example.</td></tr>
+  <tr><td><b>↶ ↷</b></td><td>Undo and redo, up to 60 steps (<kbd>Ctrl+Z</kbd>, <kbd>Ctrl+Y</kbd>). New, Open and Load can be undone too.</td></tr>
+</table>
+<p>The show is also saved in the browser after every change and comes back when you reopen the page. That copy lives in this browser on this computer only — <b>use Save for anything you want to keep</b>.</p>
+<h3>The examples</h3>
+<table>
+  <tr><th>Example</th><th>Rig</th></tr>
+  <tr><td>Wincode showcase — all five models</td><td>2 × 250W BSW, 500W Frame, AquaVortex TB5, ApexPointe 420, Mega480 (229 channels)</td></tr>
+  <tr><td>250W BSW × 4 · 500W Frame × 4 · ApexPointe 420 × 4 · Mega480 × 4</td><td>Four of one model</td></tr>
+  <tr><td>AquaVortex TB5 × 2</td><td>Two bars, ten heads</td></tr>
+  <tr><td>Large rig — 48 fixtures, 5 universes</td><td>16 Mega480, 16 ApexPointe 420, 8 TB5, 8 BSW (2088 channels)</td></tr>
+</table>
+<p>Every example has groups, a full set of palettes, the cue lists <i>Main show</i>, <i>Colour chase</i> and <i>Timecode demo</i>, effects, and a first page of playbacks.</p>
+
+<h2 id="lib">17. Fixture library</h2>
+<table>
+  <tr><th>Wincode fixture</th><th>Modes</th><th>Notes</th></tr>
+  <tr><td>250W BSW (WOP-LM1012B)</td><td>17CH · 20CH</td><td>Colour wheel, two gobo wheels, 3-facet prism, zoom 6–26°</td></tr>
+  <tr><td>500W Frame (WOP-LM500WF)</td><td>26CH</td><td>CMY, CTO, colour wheel, four framing blades, zoom 6–48°</td></tr>
+  <tr><td>ApexPointe 420</td><td>39CH</td><td>CMY, 13-colour wheel, two gobo wheels, two prism wheels, continuous pan</td></tr>
+  <tr><td>Mega480 BSW (WOP-M480BSW)</td><td>34CH · 39CH</td><td>CMY, colour wheel, two gobo wheels, two prism wheels</td></tr>
+  <tr><td>AquaVortex TB5 (WOP-AVortex TB5)</td><td>21 · 41 · 71 · 75 · 85 · 170CH</td><td>Five heads on a bar, RGBL, pixel rings</td></tr>
+</table>
+<p>Generic profiles: Dimmer · RGB · RGBW · RGBAW + UV · Moving Head Spot · Moving Head Wash · Moving Head CMY · Scanner · Dimmer pack (2–48 channels).</p>
+<p>The Wincode profiles carry the function table of every channel and its resting value, taken from the fixtures' manuals. On a multi-head fixture such as the TB5, an attribute you set applies to all its heads; the effects treat each head as its own fixture.</p>
+
+<h2 id="keys">18. Keys and MIDI</h2>
+<table>
+  <tr><th>Key</th><th>Action</th></tr>
+  <tr><td><kbd>Esc</kbd></td><td>Clear (programmer, then selection)</td></tr>
+  <tr><td><kbd>H</kbd></td><td>Highlight on / off</td></tr>
+  <tr><td><kbd>F</kbd></td><td>Selection at full</td></tr>
+  <tr><td><kbd>R</kbd></td><td>Record cue</td></tr>
+  <tr><td><kbd>B</kbd></td><td>Blackout on / off</td></tr>
+  <tr><td><kbd>Space</kbd></td><td>GO on playback 1</td></tr>
+  <tr><td><kbd>1</kbd> … <kbd>9</kbd>, <kbd>0</kbd></td><td>GO on playbacks 1 … 9, 10</td></tr>
+  <tr><td><kbd>←</kbd> <kbd>→</kbd></td><td>Previous / next fixture</td></tr>
+  <tr><td><kbd>Ctrl+A</kbd></td><td>Select all</td></tr>
+  <tr><td><kbd>Ctrl+Z</kbd> / <kbd>Ctrl+Y</kbd></td><td>Undo / redo</td></tr>
+  <tr><td><kbd>Enter</kbd></td><td>Go to the command line</td></tr>
+</table>
+<p>The keys work while no text field has the focus.</p>
+<table>
+  <tr><th>MIDI message</th><th>Action (current playback page)</th></tr>
+  <tr><td>Control change 1–10</td><td>Playback faders 1–10</td></tr>
+  <tr><td>Control change 11</td><td>Grand master</td></tr>
+  <tr><td>Note 36–45</td><td>GO on playbacks 1–10</td></tr>
+  <tr><td>Note 46–55</td><td>Flash on playbacks 1–10 (while the note is held)</td></tr>
+</table>
+
+<h2 id="rules">19. How values are merged</h2>
+<p>Several things can want the same channel at once. The studio decides in this order, lowest to highest:</p>
+<ol>
+  <li><b>Defaults.</b> A channel nothing controls rests at its default: shutter open, pan and tilt centred, the rest at zero.</li>
+  <li><b>Playbacks.</b> For <i>intensity</i>, the highest value of all running playbacks wins (HTP), each scaled by its fader. For everything else, the playback started <i>last</i> wins (LTP).</li>
+  <li><b>Effects</b> act on top of that.</li>
+  <li><b>The programmer</b> overrides all of the above.</li>
+  <li><b>Highlight</b> forces the selection to full.</li>
+  <li><b>Group masters</b> limit the intensity of their groups.</li>
+  <li><b>Grand master and blackout</b> scale every intensity.</li>
+</ol>
+
+<h2 id="faq">20. Troubleshooting</h2>
+<table>
+  <tr><th>What you see</th><th>What to check</th></tr>
+  <tr><td>The 3D stage does not react</td><td>Are both pages opened from the same site (section 15)? Is the universe's line <i>Virtual DMX cable</i>? Is the stage playing its own show — press its Stop. After a patch change, press 🎭 3D Stage again.</td></tr>
+  <tr><td>A playback runs but there is no light</td><td>Is its fader up? Is the grand master up and Blackout off? Is a group master pulled down? Does the programmer hold the dimmer at zero — press Clear.</td></tr>
+  <tr><td>A cue does not change something</td><td>The programmer still holds that attribute (orange). Press Clear.</td></tr>
+  <tr><td>Values stay after a cue</td><td>That is tracking: a later cue must change them, or switch Tracking off for the list.</td></tr>
+  <tr><td>The output pill is red</td><td>“bridge offline”: the bridge address is wrong or the bridge program is not running. “serial not connected”: press Connect… in Setup.</td></tr>
+  <tr><td>A palette does nothing on a fixture</td><td>The palette has no values for that type of fixture. Apply it to a fixture it was recorded on, or record it again with that fixture in the programmer.</td></tr>
+  <tr><td>“overlap” in the patch</td><td>Two fixtures share addresses, or one runs past 512. Change an address or move a fixture to another universe.</td></tr>
+  <tr><td>The show is gone after reopening</td><td>The browser copy belongs to one browser on one computer and is lost when site data is cleared. Keep show files with Save.</td></tr>
+  <tr><td>No audio with the timecode run</td><td>The audio file is stored per browser: add it again with 🎵 on this computer.</td></tr>
+</table>
+<p style="margin-top:40px;color:var(--dim)">Wincode DMX Studio · <a href="https://github.com/samcho93/wincodeDmxStudio">github.com/samcho93/wincodeDmxStudio</a></p>
+</main>
+</div>
+</body>
+</html>

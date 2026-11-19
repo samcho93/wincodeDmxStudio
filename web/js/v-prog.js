@@ -25,7 +25,7 @@ export function mountProg(app, root) {
     markSel();
   }
   function markSel() {
-    for (const t of tiles.children) if (t.dataset.id) { const id = +t.dataset.id; t.classList.toggle('sel', E.sel.includes(id)); t.classList.toggle('prog', !!E.prog[id]); }
+    for (const t of tiles.children) if (t.dataset.id) { const id = +t.dataset.id; t.classList.toggle('sel', E.sel.includes(id)); t.classList.toggle('inprog', !!E.prog[id]); }
     document.querySelector('#selInfo').textContent = E.sel.length ? `${E.sel.length} selected · ${Object.keys(E.prog).length} in programmer` : Object.keys(E.prog).length ? `${Object.keys(E.prog).length} in programmer` : '';
   }
 

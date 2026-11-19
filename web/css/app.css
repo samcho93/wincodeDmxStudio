@@ -49,7 +49,7 @@ footer { background: var(--panel); border-top: 1px solid var(--line); }
 .box > h4 .spacer { flex: 1; }
 .tiles { display: flex; flex-wrap: wrap; gap: 5px; }
 .tile { width: 92px; background: var(--panel2); border: 1px solid var(--line); border-radius: 5px; padding: 4px 5px; cursor: pointer; position: relative; }
-.tile.sel { border-color: var(--acc); box-shadow: 0 0 0 1px var(--acc) inset; } .tile.prog { background: #2a1d10; }
+.tile.sel { border-color: var(--acc); box-shadow: 0 0 0 1px var(--acc) inset; } .tile.inprog { background: #2a1d10; }
 .tile .no { font-weight: 700; color: var(--acc); } .tile .nm { font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--dim); }
 .tile .lv { height: 4px; background: #0b0d10; border-radius: 2px; margin-top: 3px; overflow: hidden; } .tile .lv i { display: block; height: 100%; background: var(--I); width: 0; }
 .tile .sw { position: absolute; right: 5px; top: 5px; width: 12px; height: 12px; border-radius: 50%; border: 1px solid #000; background: #000; }
@@ -91,4 +91,4 @@ td input[type=text] { width: 100%; min-width: 90px; } tr.click { cursor: pointer
 .toast { position: fixed; left: 50%; bottom: 190px; transform: translate(-50%, 10px); background: #20262e; border: 1px solid var(--line); border-radius: 6px; padding: 7px 14px; opacity: 0; transition: .25s; z-index: 60; pointer-events: none; }
 .toast.show { opacity: 1; transform: translate(-50%, 0); } .toast.bad { border-color: var(--red); color: #ffb3b5; }
 kbd { background: #0b0d10; border: 1px solid var(--line); border-radius: 3px; padding: 0 5px; font: 11px Consolas, monospace; }
-a { color: var(--acc2); }
+a { color: var(--acc2); } a.btn { color: var(--text); text-decoration: none; }
