@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wincode DMX Studio — Tutorials</title>
+<link rel="stylesheet" href="manual.css">
+</head>
+<body>
+<div class="wrap">
+<nav class="toc">
+  <div class="brand">WINCODE</div><div class="sub">DMX Studio · Tutorials</div>
+  <div class="lang"><a class="on" href="tutorial-en.html">English</a><a href="tutorial-ko.html">한국어</a></div>
+  <a href="#before">Before you start</a>
+  <a href="#t1">1. Run a show — ten minutes with the showcase</a>
+  <a href="#t2">2. Program your own cues — 250W BSW × 4</a>
+  <a href="#t3">3. Effects — AquaVortex TB5 × 2</a>
+  <a href="#t4">4. A show against the clock — Timecode demo</a>
+  <a href="#t5">5. A large rig — 48 fixtures, 5 universes</a>
+  <a href="#next">Where to go next</a>
+  <a href="en.html">← User manual</a>
+  <a href="../">← Open DMX Studio</a>
+</nav>
+<main>
+<h1>Tutorials <small>Wincode DMX Studio · learn by doing, with the built-in examples</small></h1>
+<p>Each tutorial starts from one of the examples in the top bar and takes you through a complete task, one press at a time. They build on each other, but every one starts by loading an example, so you can also jump straight to the one you need. The <a href="en.html">user manual</a> is the reference for everything used here.</p>
+
+<h2 id="before">Before you start</h2>
+<ul>
+  <li>Open DMX Studio in Chrome or Edge: <a href="https://samcho93.github.io/wincodeDmxStudio/">samcho93.github.io/wincodeDmxStudio</a>.</li>
+  <li>To see light, you need the 3D stage. Press <span class="b">🎭 3D Stage</span> after loading an example, and put the two windows side by side. Each time you load another example, press <span class="b">🎭 3D Stage</span> again so that the stage gets the new patch.</li>
+  <li>Loading an example replaces the current show. <span class="b">↶</span> brings it back; <span class="b">Save</span> keeps it as a file.</li>
+  <li>Names in <span class="b">boxes</span> are buttons on the screen. Text in <code>this type</code> is typed into the command line, followed by Enter.</li>
+</ul>
+
+<h2 id="t1">1. Run a show — ten minutes with the showcase</h2>
+<p><b>Example:</b> Wincode showcase — all five models &nbsp;·&nbsp; <b>You will:</b> play cue lists, mix them with effects, and use the masters — the job of an operator on show night.</p>
+<figure><img src="img/01-overview.jpg" alt="The showcase loaded"><figcaption>The showcase: six fixtures, a full set of palettes, and nine playbacks ready on page 1.</figcaption></figure>
+<ol class="steps">
+  <li><b>Load the example.</b> In the top bar the list already shows <i>Wincode showcase — all five models</i>. Press <span class="b">Load</span>, then <span class="b">🎭 3D Stage</span>.</li>
+  <li><b>Start the main cue list.</b> On the playback <i>Main show</i> press <span class="b">GO</span>. Cue 1, <i>Open white</i>, fades in over 2.5 seconds: the green line under the name shows the fade, and the line below the name reads <i>1 · Open white</i>.</li>
+  <li><b>Step through the show.</b> Press <span class="b">GO</span> again and again: <i>Red fan</i>, <i>Blue wide wash</i>, <i>Amber gobos</i> (the moving heads start to circle — that cue carries an effect), <i>Magenta prism</i>, <i>Green tight, half</i>, <i>Fade out</i>. One more GO loops back to cue 1. <span class="b">Back</span> returns one cue.
+    <figure><img src="img/17-stage.jpg" alt="Cue 4 on the stage"><figcaption>Cue 4, “Amber gobos”, on the 3D stage.</figcaption></figure></li>
+  <li><b>Ride the fader.</b> Pull the <i>Main show</i> fader down to half: every fixture dims, but colours and positions stay. Pull it to zero and the playback releases; push it up and it starts again at cue 1.</li>
+  <li><b>Add a second playback.</b> Go to cue 2 of <i>Main show</i>, then press <span class="b">GO</span> on <i>Colour chase</i>. It was started later, so it takes over colour and position (latest takes precedence), and it runs by itself: its cues use <i>Wait</i> triggers. Press its <span class="b">Off</span> and <i>Main show</i> shows through again.</li>
+  <li><b>Layer effects.</b> With <i>Main show</i> on cue 1, press <span class="b">GO</span> on <i>Circle</i>: the five moving heads draw circles around the position the cue gave them. Press <span class="b">GO</span> on <i>Rainbow</i> as well: every colour-mixing fixture runs through the spectrum. Each effect has its own <span class="b">Off</span>.
+    <figure><img src="img/12-playbacks.png" alt="Playbacks running"><figcaption>Main show, Circle and Rainbow running together. Green frames mark what is on.</figcaption></figure></li>
+  <li><b>Flash.</b> Hold <span class="b">Flash</span> on <i>Dimmer breathe</i>: it is on only while you hold the button.</li>
+  <li><b>Group master.</b> The ninth playback is a group master for <i>Moving heads</i>. Pull its fader down: only the moving heads dim, the TB5 bar stays as it is.</li>
+  <li><b>Grand master and blackout.</b> Pull <b>GM</b> in the top bar to 50 %: the whole rig is at half. Press <span class="b">Blackout</span> (or <kbd>B</kbd>): everything is dark, though positions and colours keep running. Press it again and the look is back at once.</li>
+  <li><b>Use the keyboard.</b> Click an empty part of the page, then press <kbd>Space</kbd> for GO on playback 1, and <kbd>2</kbd>, <kbd>4</kbd>, <kbd>7</kbd> for GO on those playbacks.</li>
+</ol>
+<div class="note"><b>What you used:</b> GO / Back / Off / Flash, playback faders, latest-takes-precedence between playbacks, effects on top of a cue, a group master, the grand master and blackout. Manual: <a href="en.html#play">Playbacks</a>, <a href="en.html#rules">How values are merged</a>.</div>
+
+<h2 id="t2">2. Program your own cues — 250W BSW × 4</h2>
+<p><b>Example:</b> 250W BSW × 4 &nbsp;·&nbsp; <b>You will:</b> build two looks from nothing, record them as a cue list of your own, and play it — the job of a programmer.</p>
+<ol class="steps">
+  <li><b>Load the example.</b> Choose <i>250W BSW × 4</i> in the top bar, press <span class="b">Load</span>, then <span class="b">🎭 3D Stage</span>.</li>
+  <li><b>Select and bring up the lights.</b> Type <code>1 thru 4 @ full</code>. The four tiles get an orange frame, their yellow bars fill, and the answer on the right says <i>4 fixtures @ 100%</i>. The beams go straight up: pan and tilt rest at centre.
+    <figure><img src="img/t01-bsw-full.jpg" alt="Four fixtures at full"><figcaption>Four fixtures selected and at full. “Dimmer” in orange: the value is in the programmer.</figcaption></figure></li>
+  <li><b>Fan the beams.</b> Open <span class="b">Position</span>. Move the <b>Fan</b> slider to about ±40, then drag the <b>Pan</b> slider to 128: instead of all getting 128, the four fixtures get 88, 115, 141 and 168 — a fan. <b>Put Fan back to off.</b> Then set <b>Tilt</b> to about 96 to tip the beams forward.
+    <figure><img src="img/t02-bsw-fan.jpg" alt="Position tab after the fan"><figcaption>The XY pad shows the first fixture of the selection (pan 88, tilt 96).</figcaption></figure></li>
+  <li><b>Choose a colour.</b> Open <span class="b">Colour</span>. This fixture has a colour wheel, so there is no colour picker; open the list <i>— functions —</i> under <i>Color</i> and choose <i>020–029 Red</i>.
+    <figure><img src="img/t03-bsw-red.jpg" alt="Colour wheel set to red"><figcaption>The function list sets a value inside the “Red” range of the colour wheel.</figcaption></figure></li>
+  <li><b>Add a gobo.</b> Open <span class="b">Beam</span>. Under <i>RotGobo</i> choose <i>020–029 Rose</i>. Set <i>GoboRot</i> to about 100 — in that range the gobo rotates. Set <i>Zoom</i> to about 150 to make the pattern bigger.
+    <figure><img src="img/t04-bsw-beam.jpg" alt="Beam tab"><figcaption>Rotating gobo “Rose”, rotating, zoom at 150.</figcaption></figure></li>
+  <li><b>Make a cue list for it.</b> Open the tab <span class="b">Cue lists</span>, press <span class="b">+ New cue list</span>, and type the name <i>My show</i>. The list is selected, so cues are recorded into it.</li>
+  <li><b>Record cue 1.</b> Go back to <span class="b">Programmer</span> and press <span class="b">Record cue</span> (or <kbd>R</kbd>). A message confirms <i>Recorded cue 1 in “My show”</i>. Press <span class="b">Clear</span> once: the programmer is empty — and the stage goes dark, because nothing plays the cue yet.</li>
+  <li><b>Build the second look from palettes.</b> Type <code>1 thru 4</code>, then click the palettes <span class="b">Blue</span> (colour), <span class="b">Prism</span> (beam) and <span class="b">Cross</span> (position). Three clicks, a complete look.</li>
+  <li><b>Record cue 2 and let go.</b> Press <span class="b">Record cue</span>, then <span class="b">Clear</span> twice (programmer, then selection).
+    <figure><img src="img/t05-bsw-cues.jpg" alt="The new cue list"><figcaption>Cue lists tab: “My show” with two cues, each with a 2-second fade. The pill shows which playback it is on.</figcaption></figure></li>
+  <li><b>Play it.</b> The studio put <i>My show</i> on the first free playback — scroll the playback bar to the right to find it. Press its <span class="b">GO</span>: cue 1 fades in. Press <span class="b">GO</span> again: the beams cross over and turn blue while the prism comes in.
+    <figure><img src="img/t06-bsw-playback.png" alt="My show on a playback"><figcaption>“My show” running on playback 9.</figcaption></figure>
+    <figure><img src="img/t07-bsw-stage.jpg" alt="Cue 2 on the stage"><figcaption>Cue 2 on the 3D stage: blue, crossed beams.</figcaption></figure></li>
+  <li><b>Notice the tracking.</b> Cue 2 holds only colour, beam and position — no dimmer. The lights stay on because cue 1's dimmer value <i>tracks</i> through. Untick <b>Tracking</b> in the Cue lists tab and go to cue 2 again: now it is dark. Tick it again.</li>
+  <li><b>Change the timing.</b> In the Cue lists tab set <i>Fade s</i> of cue 2 to 5 and go to it again: a slow move. Then set the <i>Trigger</i> of both cues to <i>Wait</i> with 3 seconds: with <b>Loop</b> on, the list now runs by itself.</li>
+  <li><b>Fix a cue.</b> Press <span class="b">Load</span> on cue 1, change the colour to another function of the wheel, press <span class="b">Update</span> on cue 1, then <span class="b">Clear</span>.</li>
+  <li><b>Save.</b> Press <span class="b">Save</span> in the top bar to keep the show as a file.</li>
+</ol>
+<div class="note"><b>What you used:</b> the command line, the attribute groups, Fan, function lists, palettes, Record cue, Clear, tracking, fade times and triggers, Load / Update. Manual: <a href="en.html#prog">The programmer</a>, <a href="en.html#pools">Groups and palettes</a>, <a href="en.html#cues">Cue lists</a>.</div>
+
+<h2 id="t3">3. Effects — AquaVortex TB5 × 2</h2>
+<p><b>Example:</b> AquaVortex TB5 × 2 &nbsp;·&nbsp; <b>You will:</b> make a rainbow and a dimmer chase across ten heads, and learn why an effect sometimes seems to do nothing.</p>
+<p>A TB5 is one fixture with five heads. When you set an attribute, all five heads get it; an effect treats each head as an item of its own, so two bars give it ten items to spread across.</p>
+<ol class="steps">
+  <li><b>Load the example.</b> Choose <i>AquaVortex TB5 × 2</i>, press <span class="b">Load</span>, then <span class="b">🎭 3D Stage</span>.</li>
+  <li><b>Light the bars.</b> Type <code>1 thru 2 @ full</code>. In <span class="b">Beam</span> set <i>Zoom</i> to about 150; in <span class="b">Position</span> set <i>Tilt</i> to about 150 so the beams lean towards you. The bars stay dark for now: a colour-mixing fixture gives no light until it has a colour.</li>
+  <li><b>Make a rainbow.</b> Open the tab <span class="b">Effects</span> and press <span class="b">+ New effect</span>. It takes the two selected bars. Set <i>Name</i> to <i>My rainbow</i>, <i>Type</i> to <i>Colour rainbow</i>, <i>Rate</i> to 12 and <i>Spread</i> to 360.</li>
+  <li><b>Run it.</b> Press <span class="b">▶ Run</span>. The effect goes onto a free playback and starts: the spectrum travels along the ten heads.
+    <figure><img src="img/t08-tb5-rainbow.jpg" alt="Rainbow effect"><figcaption>“My rainbow” running on playback 8.</figcaption></figure>
+    <figure><img src="img/t09-tb5-stage.jpg" alt="Rainbow on the stage"><figcaption>One wave of colour across the two bars.</figcaption></figure></li>
+  <li><b>Play with the spread.</b> Set <i>Spread</i> to 0: all ten heads change colour together. Set it to 720: two full rainbows across the bars. Set <i>Direction</i> to <i>backward</i>: the colours travel the other way. Press <span class="b">Tap</span> twice in time with a beat to set the rate by ear.</li>
+  <li><b>Make a chase.</b> Press <span class="b">+ New effect</span> again. Set <i>Name</i> to <i>My chase</i>, <i>Type</i> to <i>Dimmer</i>, <i>Wave</i> to <i>chase</i>, <i>Rate</i> to 40, <i>Size</i> and <i>Centre</i> to 127, <i>Spread</i> to 360. Press <span class="b">▶ Run</span>.
+    <figure><img src="img/t10-tb5-chase.jpg" alt="Chase effect"><figcaption>“My chase”: one head at a time.</figcaption></figure></li>
+  <li><b>Nothing happens — why?</b> Both playbacks are running, yet every head stays at full. The reason is on the Programmer tab: the dimmers are still <i>in the programmer</i>, and the programmer always wins.</li>
+  <li><b>Release the head dimmers.</b> Open <span class="b">Programmer</span> → <span class="b">Intensity</span>. There are two attributes: <i>Dimmer</i> (the master of the bar) and <i>LED 1 DIMMER</i> (the heads). Press the <b>×</b> next to <i>LED 1 DIMMER</i>. Now the chase is visible: one head after another, in rainbow colours. Leave <i>Dimmer</i> at 255 — pressing <span class="b">Clear</span> would take the master to zero and the bars would go dark.</li>
+  <li><b>Shape the chase.</b> Change <i>Wave</i> to <i>sine</i> for a soft wave, to <i>pulse</i> for wider steps, to <i>random</i> for sparkle. Halve <i>Spread</i> to 180: two heads are lit at a time.</li>
+  <li><b>Put an effect in a cue.</b> Open <span class="b">Cue lists</span>, select <i>Main show</i>, and in the <i>Effect</i> column of cue 2 choose <i>My chase</i>. Stop both effect playbacks with <span class="b">Off</span>, press <span class="b">Clear</span>, and run <i>Main show</i>: the chase now starts with cue 2 and stops with cue 3.</li>
+</ol>
+<div class="note"><b>What you used:</b> effect types, wave, rate, spread and direction, Run, the rule that the programmer overrides playbacks and effects, releasing one attribute with ×, and effects attached to cues. Manual: <a href="en.html#fx">Effects</a>.</div>
+
+<h2 id="t4">4. A show against the clock — Timecode demo</h2>
+<p><b>Example:</b> Wincode showcase — all five models &nbsp;·&nbsp; <b>You will:</b> run a cue list on time, re-time it, and tie it to a piece of music.</p>
+<ol class="steps">
+  <li><b>Load the example.</b> Choose <i>Wincode showcase — all five models</i>, press <span class="b">Load</span>, then <span class="b">🎭 3D Stage</span>.</li>
+  <li><b>Look at the list.</b> Open <span class="b">Cue lists</span> and click <i>Timecode demo</i>. Its five cues have a <i>Time s</i>: 0, 4, 8, 12 and 16 seconds. <b>Loop</b> is off, so it runs once.
+    <figure><img src="img/10-timecode.jpg" alt="Timecode demo"><figcaption>A cue with a time fires by itself when a timecode run reaches it.</figcaption></figure></li>
+  <li><b>Run it.</b> Press <span class="b">▶ Run</span> next to <i>Timecode</i>. Hands off: <i>Start</i> comes in at once, <i>Fan red</i> at 4 seconds, <i>Wide amber</i> at 8, <i>Prism</i> at 12, <i>Out</i> at 16. The playback shows the running time.
+    <figure><img src="img/t11-timecode-run.jpg" alt="Timecode running"><figcaption>5.6 seconds in: cue 2 is live (green row), and the playback shows “▶ 5.6 s”.</figcaption></figure></li>
+  <li><b>Stop and re-time.</b> Press <span class="b">■ Stop</span>. Change the times to 0, 2, 4, 6 and 8, and the <i>Fade s</i> of every cue to 0.5: the same show, twice as fast and snappier. Run it again.</li>
+  <li><b>Add a cue in between.</b> In the Programmer type <code>4 @ full</code> (the TB5), click the colour palette <span class="b">Cyan</span>, and press <span class="b">Record cue</span> — <i>Timecode demo</i> is the current list, so the cue lands there. Back in Cue lists, give it <i>No</i> 2.5 and <i>Time s</i> 3: it sorts itself between cues 2 and 3. Press <span class="b">Clear</span>.</li>
+  <li><b>Add music.</b> Press <span class="b">🎵 Add audio</span> and choose a sound file. Run again: the music plays, and it is now the clock — the cues follow the position of the music, not a separate timer.</li>
+  <li><b>Find your times by ear.</b> Play the track once and note the seconds of the moments you want to hit, then type them into <i>Time s</i>. Decimals work: 12.4 is fine.</li>
+</ol>
+<div class="note"><b>Good to know:</b> a timecode run and the GO button are two ways of driving the same list — stop the run and GO works as usual. The audio file is stored in this browser, not in the show file. Manual: <a href="en.html#timecode">Timecode and audio</a>.</div>
+
+<h2 id="t5">5. A large rig — 48 fixtures, 5 universes</h2>
+<p><b>Example:</b> Large rig — 48 fixtures, 5 universes &nbsp;·&nbsp; <b>You will:</b> work with many fixtures at once and send universes to Art-Net and sACN.</p>
+<ol class="steps">
+  <li><b>Load the example.</b> Choose <i>Large rig — 48 fixtures, 5 universes</i> and press <span class="b">Load</span>. (This rig is too big to be worth viewing in 3D; this tutorial uses the DMX output monitor instead.)</li>
+  <li><b>Read the patch.</b> Open <span class="b">Patch</span>. The header says <i>48 fixtures · 2088 channels of 2560 (5 universes, up to 64)</i>. Scroll down: 16 Mega480, 16 ApexPointe 420, 8 TB5, 8 BSW. A Mega480 takes 39 channels, so 13 fit a universe and the 14th starts universe 2 at address 1.
+    <figure><img src="img/t12-big-patch.jpg" alt="Patch of the large rig"><figcaption>The patch. Fixture numbers run 1–48, whatever the universe.</figcaption></figure></li>
+  <li><b>Select by group.</b> Back in <span class="b">Programmer</span>, type <code>group 2 @ full</code>. Group 2 is <i>Moving heads</i>: 40 fixtures on four universes come up with one line.
+    <figure><img src="img/t14-big-prog.jpg" alt="Forty fixtures selected"><figcaption>Forty fixtures selected and at full. One Dimmer slider drives them all.</figcaption></figure></li>
+  <li><b>Work in halves.</b> Press <span class="b">Odd</span>, click the palette <span class="b">Red</span>; press <span class="b">Even</span>, click <span class="b">Blue</span>. Press <span class="b">All</span>, set <b>Fan</b> to ±60 and move <i>Pan</i>: 48 fixtures spread in one move. Put Fan back to off.</li>
+  <li><b>Check the wire.</b> Open <span class="b">DMX output</span> and step through the universes with the list at the top right. Hover a cell to see which fixture and function it is.</li>
+  <li><b>Give the universes their lines.</b> Open <span class="b">Setup</span>. For universes 1 and 2 choose <i>Art-Net (bridge)</i>, with <i>Universe</i> 0 and 1 and the IP address of your node as <i>Host</i>. For universe 3 choose <i>sACN / E1.31 (bridge)</i>, <i>Universe</i> 3, <i>Host</i> <code>multicast</code>. Leave 4 and 5 on the Virtual DMX cable.
+    <figure><img src="img/t13-big-setup.jpg" alt="Universes on different lines"><figcaption>Five universes on three kinds of line. The pill next to Bridge says “connected”.</figcaption></figure></li>
+  <li><b>Connect the bridge.</b> A browser cannot send Art-Net or sACN itself. Start a bridge — the simulator's server, or <code>npm start</code> in the DMX Studio folder — and enter its address under <i>Lines → Bridge</i> (<code>ws://127.0.0.1:7740/ws</code> or <code>ws://127.0.0.1:7750/ws</code>). The output pill in the top bar turns green: <i>5 / 5 universes out</i>.</li>
+  <li><b>Grow the rig.</b> In <span class="b">Patch</span> press <span class="b">+ Patch fixtures</span>, choose a fixture and a quantity of 20, and leave the start address at 0. The studio fills the free space and opens universe 6 when it needs it. New universes start with the line <i>Off</i>: set it in Setup.</li>
+  <li><b>Run the examples' show on it.</b> The playbacks at the bottom work exactly as in tutorial 1 — <i>Main show</i>, <i>Colour chase</i>, the effects — now on 48 fixtures.</li>
+</ol>
+<div class="note"><b>What you used:</b> groups and Odd / Even to handle many fixtures, palettes that apply to every fixture of a type, the DMX output monitor, universes on different lines, the bridge. Manual: <a href="en.html#setup">Universes and lines</a>, <a href="en.html#out">DMX output monitor</a>.</div>
+
+<h2 id="next">Where to go next</h2>
+<ul>
+  <li>Start from <span class="b">New</span> and patch your own rig; record groups first, then palettes, then cues — in that order the work goes fastest.</li>
+  <li>Connect a MIDI surface (Setup → MIDI) and run tutorial 1 from real faders.</li>
+  <li>Keep the <a href="en.html#keys">key list</a> and the <a href="en.html#cmd">command line table</a> at hand.</li>
+  <li>If something does not behave as you expect, see <a href="en.html#faq">Troubleshooting</a> — most surprises come from a value still held in the programmer, or from tracking.</li>
+</ul>
+<p style="margin-top:40px;color:var(--dim)">Wincode DMX Studio · <a href="https://github.com/samcho93/wincodeDmxStudio">github.com/samcho93/wincodeDmxStudio</a></p>
+</main>
+</div>
+</body>
+</html>

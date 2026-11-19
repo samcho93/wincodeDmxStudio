@@ -7,7 +7,7 @@ or a DMX USB Pro widget.
 
 **Live:** https://samcho93.github.io/wincodeDmxStudio/ · 3D stage it drives: https://samcho93.github.io/wincodeMovingHead/stage.html
 
-**User manual:** [English](https://samcho93.github.io/wincodeDmxStudio/manual/en.html) · [한국어](https://samcho93.github.io/wincodeDmxStudio/manual/ko.html) (`web/manual/`, with screenshots)
+**User manual:** [English](https://samcho93.github.io/wincodeDmxStudio/manual/en.html) · [한국어](https://samcho93.github.io/wincodeDmxStudio/manual/ko.html) (`web/manual/`, with screenshots) · **Tutorials** with the examples: [English](https://samcho93.github.io/wincodeDmxStudio/manual/tutorial-en.html) · [한국어](https://samcho93.github.io/wincodeDmxStudio/manual/tutorial-ko.html)
 
 No build step: `web/` is the whole application (ES modules). The Node server is only needed for Art-Net / sACN.
 
