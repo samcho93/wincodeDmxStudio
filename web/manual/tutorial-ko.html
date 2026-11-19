@@ -17,6 +17,7 @@
   <a href="#t3">3. 이펙트 — AquaVortex TB5 × 2</a>
   <a href="#t4">4. 시간에 맞춘 쇼 — Timecode demo</a>
   <a href="#t5">5. 대형 리그 — 48대, 5유니버스</a>
+  <a href="#t6">6. 라이브러리로 만드는 리그 — 스폿과 워시</a>
   <a href="#next">다음 단계</a>
   <a href="ko.html">← 사용 설명서</a>
   <a href="../">← DMX Studio 열기</a>
@@ -24,6 +25,8 @@
 <main>
 <h1>튜토리얼 <small>Wincode DMX Studio · 내장 예제로 직접 해 보며 배우기</small></h1>
 <p>각 튜토리얼은 상단 바의 예제 하나에서 출발해, 하나의 작업을 처음부터 끝까지 한 번씩 눌러 가며 진행합니다. 순서대로 하면 내용이 이어지지만, 모든 튜토리얼이 예제를 불러오는 것으로 시작하므로 필요한 것부터 바로 해도 됩니다. 여기에 나오는 기능의 자세한 설명은 <a href="ko.html">사용 설명서</a>에 있습니다.</p>
+
+<p>튜토리얼 6만 예외입니다. 빈 쇼에서 시작해 조명 라이브러리에서 기기를 가져옵니다.</p>
 
 <h2 id="before">시작하기 전에</h2>
 <ul>
@@ -131,6 +134,34 @@
   <li><b>예제의 쇼 돌려 보기.</b> 아래쪽 플레이백은 튜토리얼 1과 똑같이 동작합니다 — <i>Main show</i>, <i>Colour chase</i>, 이펙트들 — 이번에는 48대에서.</li>
 </ol>
 <div class="note"><b>사용한 기능:</b> 많은 기기를 다루기 위한 그룹과 Odd / Even, 같은 기종 전체에 적용되는 팔레트, DMX 출력 모니터, 서로 다른 라인의 유니버스, 브리지. 설명서: <a href="ko.html#setup">유니버스와 출력 라인</a>, <a href="ko.html#out">DMX 출력 모니터</a>.</div>
+
+<h2 id="t6">6. 라이브러리로 만드는 리그 — Cameo 스폿과 Robe 워시</h2>
+<p><b>예제:</b> 없음 — 빈 쇼에서 시작합니다 &nbsp;·&nbsp; <b>배우는 것:</b> 조명 라이브러리에서 다른 제조사의 기기를 패치하고, 3D 스테이지에서 확인하고, Wincode 기기와 같은 도구로 프로그램하기.</p>
+<ol class="steps">
+  <li><b>빈 쇼로 시작하기.</b> 상단 바의 <span class="b">New</span>를 누릅니다.</li>
+  <li><b>스폿 4대 패치.</b> <span class="b">Patch</span>를 열고 <span class="b">+ Patch fixtures</span>를 누릅니다. <i>Fixture library</i> 아래 검색 칸에 <i>auro spot 300</i>을 입력하고 <b>Auro Spot 300</b> 줄을 클릭합니다. 위쪽 <i>Fixture</i> 칸이 <i>cameo — Auro Spot 300</i>으로 바뀌고 <i>Mode</i>에 모드 세 개가 나옵니다. <i>24-channel (24)</i>를 그대로 둡니다. <i>Quantity</i>를 4로 하고 <span class="b">Patch</span>를 누릅니다. <i>Patched 4 × Auro Spot 300</i>이라는 메시지가 나옵니다.</li>
+  <li><b>워시 6대 패치.</b> <span class="b">+ Patch fixtures</span>를 다시 누르고 <i>ledwash</i>를 검색해 <b>Robin LEDWash 600</b>을 클릭합니다. 모드는 <i>1st (37)</i> 그대로, <i>Quantity</i>를 6으로 하고 <span class="b">Patch</span>를 누릅니다. 머리줄에 <i>10 fixtures · 318 channels of 512</i>가 나옵니다. 스튜디오가 주소를 차례로 이어서 매긴 것입니다.
+    <figure><img src="img/t15-lib-patch.png" alt="패치에 들어온 라이브러리 기기 10대"><figcaption>Cameo 스폿 4대와 Robe 워시 6대. 번호는 1–10, 주소는 자동으로 매겨졌습니다.</figcaption></figure></li>
+  <li><b>스테이지 열기.</b> <span class="b">🎭 3D Stage</span>를 누릅니다. 기기 10대가 두 줄로 무대에 섭니다. 모두 같은 대체 외형입니다. 라이브러리는 기기의 채널은 알지만 모양은 모르기 때문입니다.</li>
+  <li><b>워시를 켜고 색 주기.</b> <code>5 thru 10 @ full</code>을 입력합니다. <span class="b">Colour</span>를 엽니다. 이 기기는 컬러 믹싱 방식이라 색 막대와 색 견본 줄이 나옵니다. 진한 파랑 견본을 클릭합니다. <i>Blue Inner</i>가 255가 되고, 중간 링과 바깥 링도 함께 255가 됩니다. 이 워시는 컬러 구역이 세 개이고, 고른 색은 세 구역 모두에 들어갑니다.
+    <figure><img src="img/t16-lib-colour.png" alt="라이브러리 기기의 컬러 피커"><figcaption>Robin LEDWash 600의 Colour 그룹: 피커, 색 견본, 그리고 기기 자체의 컬러 채널.</figcaption></figure></li>
+  <li><b>앞으로 기울이기.</b> <span class="b">Position</span>을 열고 <i>Tilt</i>를 96 정도로 맞춥니다.</li>
+  <li><b>선택과 색 저장해 두기.</b> <b>Groups</b>의 <span class="b">+</span>를 누르면 <i>Group 1 (6)</i>이 생깁니다. 이제 워시 6대는 클릭 한 번으로 선택됩니다. <b>Colour palettes</b>의 <span class="b">+</span>를 누르면 <i>Colour 1</i>에 파랑이 저장됩니다.</li>
+  <li><b>이제 스폿.</b> <code>1 thru 4 @ full</code>을 입력합니다. <span class="b">Colour</span>를 엽니다. 스폿은 컬러휠 방식이라 피커가 없습니다. <i>Color Wheel</i> 아래의 <i>— functions —</i> 목록을 열어 <i>011–015 Red</i>를 고릅니다.</li>
+  <li><b>회전 고보 넣기.</b> <span class="b">Beam</span>을 엽니다. <i>Gobo Wheel 1</i> 아래에서 <i>046–065 Gobo 3</i>을, <i>Gobo 1 Rotation</i> 아래에서 <i>129–191 Gobo rotation CW slow … fast</i>를 고릅니다. 이 목록은 라이브러리에서 온 것으로, 채널마다 모든 구간과 이름이 들어 있습니다. <span class="b">Position</span>에서 <i>Tilt</i>를 104 정도로 맞춥니다.</li>
+  <li><b>큐 1 저장.</b> <span class="b">Record cue</span>를 누릅니다. 아직 큐 리스트가 없으므로 스튜디오가 하나 만듭니다. <i>Recorded cue 1 in “Main”</i>이 나오고 플레이백 1에 <i>Main</i>이 올라갑니다. <span class="b">Clear</span>를 한 번 누릅니다.</li>
+  <li><b>두 번째 장면 만들기.</b> <i>Group 1</i>을 클릭하고 <span class="b">Colour</span>에서 주황 견본을 클릭합니다. <code>1 thru 4</code>를 입력하고 <span class="b">Colour</span>에서 <i>081–088 Blue</i>를, <span class="b">Beam</span>의 <i>Prism</i> 아래에서 <i>129–191 Prism CW slow … fast</i>를 고릅니다. <span class="b">Record cue</span>를 누르고 <span class="b">Clear</span>를 두 번 누릅니다.
+    <figure><img src="img/t17-lib-cues.png" alt="라이브러리 기기로 만든 큐 리스트"><figcaption>Cue lists 탭: 큐 두 개가 든 “Main”. 플레이백 1.1에 올라가 있습니다.</figcaption></figure></li>
+  <li><b>재생하기.</b> <i>Main</i>의 <span class="b">GO</span>를 누릅니다. 파란 워시와, 고보가 도는 빨간 스폿이 2초에 걸쳐 들어옵니다. <span class="b">GO</span>를 한 번 더 누르면 워시는 주황으로, 스폿은 프리즘이 도는 파랑으로 바뀝니다. 세 번째 <span class="b">GO</span>는 큐 1로 돌아갑니다.</li>
+  <li><b>이펙트 얹기.</b> 큐 1이 실행 중인 상태에서 <code>5 thru 10</code>을 입력하고, <span class="b">Effects</span>를 열어 <span class="b">+ New effect</span>를 누릅니다. 이름을 <i>Wash rainbow</i>로 바꾸고 <i>Type</i>을 <i>Colour rainbow</i>로 한 뒤 <span class="b">▶ Run</span>을 누릅니다. 이펙트가 플레이백 2에 올라가고, 워시 6대가 옆 기기보다 한 걸음씩 앞서며 무지개색을 돕니다.
+    <figure><img src="img/t18-lib-effect.png" alt="라이브러리 기기의 무지개 이펙트"><figcaption>큐 리스트 옆 플레이백 1.2에서 실행 중인 이펙트.</figcaption></figure>
+    <figure><img src="img/t19-lib-stage.png" alt="3D 스테이지의 무지개"><figcaption>3D 스테이지: 무지개색 워시 6대와 빨간 스폿 4대. 표시는 <i>Following the virtual DMX cable</i>입니다.</figcaption></figure></li>
+  <li><b>이펙트 걷어내기.</b> <i>Wash rainbow</i>의 <span class="b">Off</span>를 누르면 워시가 큐의 색으로 돌아갑니다.</li>
+  <li><b>라이브러리에 없는 기기.</b> <span class="b">+ Patch fixtures</span>에서 <span class="b">Import GDTF / OFL file…</span>을 누르고, 제조사나 gdtf-share.com에서 받은 <code>.gdtf</code> 파일을 고릅니다. 라이브러리 목록 맨 위에 <i>imported</i> 표시와 함께 나오고 이미 선택되어 있으므로, 다른 기기처럼 패치하면 됩니다.</li>
+  <li><b>저장.</b> <span class="b">Save</span>를 누릅니다. 쇼 파일에는 사용한 라이브러리 기기가 함께 들어 있어 어느 컴퓨터에서나 열립니다.</li>
+</ol>
+<div class="note"><b>사용한 기능:</b> 패치 대화상자의 조명 라이브러리, 컬러 믹싱과 컬러휠을 나란히 다루기, 라이브러리에서 오는 기능 목록, 그룹과 팔레트, 스튜디오가 만들어 주는 큐 리스트, 플레이백의 이펙트. 설명서: <a href="ko.html#lib">조명 라이브러리</a>, <a href="ko.html#patch">패치</a>.<br>
+<b>기억할 것:</b> 라이브러리 데이터는 기기 설명서와 대조해 확인된 것이 아닙니다. 실제 공연 전에는 채널 목록을 설명서와 맞춰 보십시오.</div>
 
 <h2 id="next">다음 단계</h2>
 <ul>

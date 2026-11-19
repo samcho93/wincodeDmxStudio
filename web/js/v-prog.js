@@ -65,7 +65,7 @@ export function mountProg(app, root) {
     }
     for (const { c, id } of list) {
       const sl = h('input', { type: 'range', min: 0, max: 255, step: 1, value: E.value(id, c.key), oninput: e => { E.set(c.base, +e.target.value); }, onpointerdown: () => { dragging = c.base; }, onpointerup: () => { dragging = null; } });
-      const row = h('div', { class: 'attr', dataset: { base: c.base, key: c.key, id } }, h('span', { class: 'nm', title: c.name }, c.name.replace(/\s*\d+$/, '')), sl, h('span', { class: 'v' }), h('span', { class: 'x', title: 'Release from the programmer', onclick: () => E.release(c.base) }, '×'));
+      const row = h('div', { class: 'attr', dataset: { base: c.base, key: c.key, id } }, h('span', { class: 'nm', title: c.name }, (c.head ? c.name.replace(/\s*\d+$/, '') : c.name)), sl, h('span', { class: 'v' }), h('span', { class: 'x', title: 'Release from the programmer', onclick: () => E.release(c.base) }, '×'));
       kids.push(row);
       if (c.ranges.length > 1) kids.push(h('div', { class: 'attr' }, select([['', '— functions —'], ...c.ranges.map(r => [r[0] === r[1] ? r[0] : Math.round((r[0] + Math.min(r[1], r[0] + 6)) / 2), `${String(r[0]).padStart(3, '0')}–${String(r[1]).padStart(3, '0')}  ${r[2]}`])], '', v => { if (v !== '') E.set(c.base, +v, 0); })));
     }
