@@ -84,10 +84,10 @@
   <tr><td>✕</td><td>Remove from the patch (and from every group).</td></tr>
 </table>
 <h3>Patching fixtures</h3>
-<figure><img src="img/03-patch-dialog.jpg" alt="Patch fixtures dialog"><figcaption>+ Patch fixtures.</figcaption></figure>
+<figure><img src="img/18-library-patch.png" alt="Patch fixtures dialog"><figcaption>+ Patch fixtures: the form at the top, the fixture library below it.</figcaption></figure>
 <ol>
   <li>Press <span class="b">+ Patch fixtures</span>.</li>
-  <li>Choose the fixture and its mode. The number of channels is shown next to each mode.</li>
+  <li>Choose the fixture and its mode. The number of channels is shown next to each mode. The <i>Fixture</i> list holds the Wincode and generic profiles; for any other fixture, search the <b>fixture library</b> below the form and click it (<a href="#lib">chapter 17</a>).</li>
   <li>Enter the quantity. Leave <i>Start address</i> at 0 to take the first free address.</li>
   <li>Press <span class="b">Patch</span>. The fixtures are numbered on from the highest number in use and addressed one after another.</li>
 </ol>
@@ -286,7 +286,7 @@
 <p>DMX Studio and the Wincode simulator are two programs that work as one: the studio is the console, the simulator's <b>stage</b> is the rig.</p>
 <figure><img src="img/17-stage.jpg" alt="The 3D stage following DMX Studio"><figcaption>The simulator's stage following cue 4 of the showcase, “Amber gobos”.</figcaption></figure>
 <ol class="steps">
-  <li>Patch your Wincode fixtures in DMX Studio (or load an example).</li>
+  <li>Patch your fixtures in DMX Studio (or load an example). Wincode fixtures appear on the stage with their own 3D model, library fixtures with a stand-in body; generic profiles are not shown.</li>
   <li>Press <span class="b">🎭 3D Stage</span>. The studio hands its patch to the stage page and opens it: the same fixtures, at the same addresses, appear on the stage.</li>
   <li>Work in the studio. The stage follows the Virtual DMX cable while it is not playing a show of its own.</li>
 </ol>
@@ -330,6 +330,31 @@
 </table>
 <p>Generic profiles: Dimmer · RGB · RGBW · RGBAW + UV · Moving Head Spot · Moving Head Wash · Moving Head CMY · Scanner · Dimmer pack (2–48 channels).</p>
 <p>The Wincode profiles carry the function table of every channel and its resting value, taken from the fixtures' manuals. On a multi-head fixture such as the TB5, an attribute you set applies to all its heads; the effects treat each head as its own fixture.</p>
+
+<h3>Fixtures of other manufacturers</h3>
+<p>The lower half of the <i>Patch fixtures</i> dialog is a library of 610 fixtures from 127 manufacturers — the <a href="https://open-fixture-library.org">Open Fixture Library</a>, an open project under the MIT licence, bundled with the studio.</p>
+<ol class="steps">
+  <li><b>Search.</b> Type part of the name or the manufacturer ("robin", "mac aura", "cameo par"). The list on the right of each row shows what the fixture has (<i>rgb</i>, <i>gobo</i>, <i>prism</i>) and the sizes of its channel modes. <i>All kinds</i> narrows the list to moving heads, colour changers, pixel bars and so on.</li>
+  <li><b>Click the fixture.</b> It is loaded and selected in the <i>Fixture</i> field at the top, with its modes in <i>Mode</i>.</li>
+  <li><b>Set mode, quantity and address, and press <span class="b">Patch</span></b> — exactly as for a Wincode fixture.</li>
+</ol>
+<p><b>A fixture that is not in the library:</b> press <span class="b">Import GDTF / OFL file…</span>, or drop the file on the dialog. Two formats are read:</p>
+<table>
+  <tr><th>Format</th><th>What it is</th></tr>
+  <tr><td><b>GDTF</b> (<code>.gdtf</code>)</td><td>The open fixture format of the lighting industry (DIN SPEC 15800), read by grandMA3, Vectorworks, Capture and others. Manufacturers publish their fixtures at <a href="https://gdtf-share.com">gdtf-share.com</a>.</td></tr>
+  <tr><td><b>Open Fixture Library</b> (<code>.json</code>)</td><td>A fixture file from open-fixture-library.org, for instance one you wrote in its fixture editor.</td></tr>
+</table>
+<p>An imported fixture is marked <i>imported</i>, is selected at once, and stays in the library of this browser.</p>
+<figure><img src="img/19-library-programmer.png" alt="A library fixture in the programmer"><figcaption>Six Robe Robin LEDWash 600 from the library in the programmer: colour picker, swatches and the fixture's own colour channels.</figcaption></figure>
+<p>A library fixture works like any other in the studio:</p>
+<ul>
+  <li>Its channels are sorted into the attribute groups <b>Intensity · Position · Colour · Beam · Control</b> from what each channel does.</li>
+  <li><b>Colour mixing</b> is found (RGB or CMY), so the colour picker, the swatches and the <i>Rainbow</i> effect work. A fixture with several colour cells — rings, pixels — has each cell treated as its own head.</li>
+  <li>Channels with several functions (shutter, colour wheel, gobo wheel, macros) have a <b>functions list</b> with every range and its name.</li>
+  <li>The shutter rests open, pan and tilt rest centred, so raising the dimmer gives light.</li>
+</ul>
+<div class="note">The show file carries the description of every library fixture in its patch, so a show opens on another computer even if the fixture was imported from a file there. <span class="b">🎭 3D Stage</span> passes the descriptions on, and the stage shows these fixtures with a stand-in body.<br>
+Library data comes from volunteers and manufacturers; nothing in it was checked against the fixtures' manuals here. Check the channel list of a fixture against its manual before a show.</div>
 
 <h2 id="keys">18. Keys and MIDI</h2>
 <table>

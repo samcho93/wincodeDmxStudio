@@ -85,10 +85,10 @@
   <tr><td>✕</td><td>패치에서 삭제(모든 그룹에서도 빠집니다).</td></tr>
 </table>
 <h3>기기 패치하기</h3>
-<figure><img src="img/03-patch-dialog.jpg" alt="Patch fixtures 대화상자"><figcaption>+ Patch fixtures.</figcaption></figure>
+<figure><img src="img/18-library-patch.png" alt="Patch fixtures 대화상자"><figcaption>+ Patch fixtures: 위쪽이 입력 칸, 아래쪽이 조명 라이브러리.</figcaption></figure>
 <ol>
   <li><span class="b">+ Patch fixtures</span>를 누릅니다.</li>
-  <li>기기와 모드를 고릅니다. 모드마다 채널 수가 함께 표시됩니다.</li>
+  <li>기기와 모드를 고릅니다. 모드마다 채널 수가 함께 표시됩니다. <i>Fixture</i> 목록에는 Wincode와 범용 프로파일이 있습니다. 그 밖의 기기는 입력 칸 아래의 <b>조명 라이브러리</b>에서 검색해 클릭합니다(<a href="#lib">17장</a>).</li>
   <li>수량(Quantity)을 입력합니다. <i>Start address</i>를 0으로 두면 비어 있는 첫 주소가 자동으로 잡힙니다.</li>
   <li><span class="b">Patch</span>를 누릅니다. 기기 번호는 가장 큰 번호 다음부터 매겨지고, 주소는 차례로 이어서 배정됩니다.</li>
 </ol>
@@ -287,7 +287,7 @@
 <p>DMX Studio와 Wincode 시뮬레이터는 하나처럼 동작하는 두 프로그램입니다. 스튜디오가 콘솔이고, 시뮬레이터의 <b>스테이지</b>가 무대입니다.</p>
 <figure><img src="img/17-stage.jpg" alt="DMX Studio를 따라가는 3D 스테이지"><figcaption>쇼케이스의 큐 4 “Amber gobos”를 따라가는 시뮬레이터 스테이지.</figcaption></figure>
 <ol class="steps">
-  <li>DMX Studio에서 Wincode 기기를 패치합니다(또는 예제를 불러옵니다).</li>
+  <li>DMX Studio에서 기기를 패치합니다(또는 예제를 불러옵니다). Wincode 기기는 전용 3D 모델로, 라이브러리 기기는 대체 외형으로 스테이지에 나타납니다. 범용 프로파일은 표시되지 않습니다.</li>
   <li><span class="b">🎭 3D Stage</span>를 누릅니다. 스튜디오가 패치를 스테이지 페이지에 넘기고 엽니다. 같은 기기가 같은 주소로 스테이지에 나타납니다.</li>
   <li>스튜디오에서 작업합니다. 스테이지는 자기 쇼를 재생하지 않는 동안 가상 DMX 케이블을 따라갑니다.</li>
 </ol>
@@ -331,6 +331,31 @@
 </table>
 <p>범용 프로파일: Dimmer · RGB · RGBW · RGBAW + UV · Moving Head Spot · Moving Head Wash · Moving Head CMY · Scanner · Dimmer pack(2–48채널).</p>
 <p>Wincode 프로파일에는 채널별 기능표와 기본값이 기기 설명서를 바탕으로 들어 있습니다. TB5처럼 헤드가 여러 개인 기기는 속성을 주면 모든 헤드에 적용되고, 이펙트는 헤드 하나하나를 별개의 기기처럼 다룹니다.</p>
+
+<h3>다른 제조사의 기기</h3>
+<p><i>Patch fixtures</i> 대화상자의 아래쪽 절반은 127개 제조사, 610종의 기기가 들어 있는 라이브러리입니다. MIT 라이선스의 공개 프로젝트인 <a href="https://open-fixture-library.org">Open Fixture Library</a>를 스튜디오에 내장한 것입니다.</p>
+<ol class="steps">
+  <li><b>검색합니다.</b> 이름이나 제조사의 일부를 입력합니다("robin", "mac aura", "cameo par"). 각 줄의 오른쪽에는 기기가 가진 기능(<i>rgb</i>, <i>gobo</i>, <i>prism</i>)과 채널 모드별 채널 수가 나옵니다. <i>All kinds</i>에서 무빙헤드, 컬러 체인저, 픽셀 바 등으로 좁힐 수 있습니다.</li>
+  <li><b>기기를 클릭합니다.</b> 기기가 불러와져 위쪽 <i>Fixture</i> 칸에 선택되고, <i>Mode</i>에 그 기기의 모드가 나옵니다.</li>
+  <li><b>모드, 수량, 주소를 정하고 <span class="b">Patch</span>를 누릅니다.</b> Wincode 기기와 똑같습니다.</li>
+</ol>
+<p><b>라이브러리에 없는 기기:</b> <span class="b">Import GDTF / OFL file…</span>을 누르거나 파일을 대화상자에 끌어다 놓습니다. 두 가지 형식을 읽습니다.</p>
+<table>
+  <tr><th>형식</th><th>설명</th></tr>
+  <tr><td><b>GDTF</b> (<code>.gdtf</code>)</td><td>조명 업계의 공개 기기 형식(DIN SPEC 15800)으로, grandMA3, Vectorworks, Capture 등이 읽습니다. 제조사들이 <a href="https://gdtf-share.com">gdtf-share.com</a>에 자사 기기를 올려 둡니다.</td></tr>
+  <tr><td><b>Open Fixture Library</b> (<code>.json</code>)</td><td>open-fixture-library.org의 기기 파일. 그 사이트의 기기 편집기로 직접 만든 파일도 됩니다.</td></tr>
+</table>
+<p>가져온 기기는 <i>imported</i>로 표시되고 바로 선택되며, 이 브라우저의 라이브러리에 남습니다.</p>
+<figure><img src="img/19-library-programmer.png" alt="프로그래머에서 본 라이브러리 기기"><figcaption>라이브러리에서 가져온 Robe Robin LEDWash 600 여섯 대: 컬러 피커, 색 견본, 그리고 기기 자체의 컬러 채널.</figcaption></figure>
+<p>라이브러리 기기도 스튜디오에서 다른 기기와 똑같이 동작합니다.</p>
+<ul>
+  <li>채널마다 하는 일을 읽어 <b>Intensity · Position · Colour · Beam · Control</b> 속성 그룹으로 나눕니다.</li>
+  <li><b>컬러 믹싱</b>(RGB 또는 CMY)을 찾아내므로 컬러 피커, 색 견본, <i>Rainbow</i> 이펙트가 동작합니다. 링이나 픽셀처럼 컬러 셀이 여러 개인 기기는 셀 하나하나를 별개의 헤드로 다룹니다.</li>
+  <li>기능이 여러 개인 채널(셔터, 컬러휠, 고보휠, 매크로)에는 구간과 이름이 모두 들어 있는 <b>functions 목록</b>이 붙습니다.</li>
+  <li>셔터는 열린 값, 팬과 틸트는 중앙이 기본값이라 디머만 올리면 빛이 나옵니다.</li>
+</ul>
+<div class="note">쇼 파일에는 패치에 쓰인 라이브러리 기기의 정의가 함께 저장됩니다. 그래서 파일로 가져온 기기라도 다른 컴퓨터에서 쇼가 그대로 열립니다. <span class="b">🎭 3D Stage</span>는 그 정의를 스테이지로 넘기고, 스테이지는 이 기기들을 대체 외형으로 보여 줍니다.<br>
+라이브러리 데이터는 자원봉사자와 제조사가 만든 것이며, 여기서 기기 설명서와 대조해 확인한 것은 없습니다. 공연 전에 기기의 채널 목록을 설명서와 맞춰 보십시오.</div>
 
 <h2 id="keys">18. 단축키와 MIDI</h2>
 <table>
