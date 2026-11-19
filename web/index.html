@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wincode DMX Studio</title>
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<header id="bar">
+  <div class="brand"><span class="logo">WINCODE</span><span class="sub">DMX Studio</span></div>
+  <input type="text" id="showName" title="Show name">
+  <div class="grp">
+    <button class="btn" id="btnNew" title="Start an empty show">New</button>
+    <button class="btn" id="btnOpen" title="Open a show file (.wdx.json)">Open</button>
+    <button class="btn" id="btnSave" title="Download the show file">Save</button>
+    <input type="file" id="fileOpen" accept=".json,application/json" hidden>
+    <select id="selExample" title="Ready-made shows for the Wincode fixtures"></select>
+    <button class="btn" id="btnExample" title="Load the selected example (replaces the current show)">Load</button>
+  </div>
+  <div class="grp">
+    <button class="btn" id="btnUndo" title="Undo (Ctrl+Z)">↶</button>
+    <button class="btn" id="btnRedo" title="Redo (Ctrl+Y)">↷</button>
+  </div>
+  <div class="grp">
+    <button class="btn" id="btnStage" title="Open the 3D stage with this patch: the fixtures there follow this console">🎭 3D Stage</button>
+  </div>
+  <span class="spacer"></span>
+  <span class="pill" id="outPill">—</span>
+  <label class="gm" title="Grand master: scales every intensity channel">GM <input type="range" id="gm" min="0" max="100" value="100"><b id="gmVal">100%</b></label>
+  <button class="btn warn" id="btnBlackout" title="Blackout: all intensities to zero (B)">Blackout</button>
+</header>
+<nav id="tabs">
+  <button class="tab active" data-tab="prog">Programmer</button>
+  <button class="tab" data-tab="patch">Patch</button>
+  <button class="tab" data-tab="cues">Cue lists</button>
+  <button class="tab" data-tab="fx">Effects</button>
+  <button class="tab" data-tab="out">DMX output</button>
+  <button class="tab" data-tab="setup">Setup</button>
+  <span class="spacer"></span>
+  <span class="hint" id="selInfo"></span>
+</nav>
+<main>
+  <section class="pane active" id="tab-prog"></section>
+  <section class="pane" id="tab-patch"></section>
+  <section class="pane" id="tab-cues"></section>
+  <section class="pane" id="tab-fx"></section>
+  <section class="pane" id="tab-out"></section>
+  <section class="pane" id="tab-setup"></section>
+</main>
+<footer>
+  <div id="cmd">
+    <span class="prompt">›</span>
+    <input type="text" id="cmdline" placeholder="Command line:  1 thru 6 @ 80   ·   group 2 @ full   ·   1 + 3 + 5   ·   go 1   ·   off 1   ·   clear" spellcheck="false" autocomplete="off">
+    <span class="hint" id="cmdMsg"></span>
+  </div>
+  <div id="playbacks"></div>
+</footer>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "wincode-dmx-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Wincode DMX Studio — lighting console in the browser: programmer, palettes, cue lists, effects, playbacks; Virtual DMX cable, Art-Net, sACN and DMX USB Pro output",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "import-wincode": "node tools/import-wincode.mjs ../wincodeMovingHead/web/js/models/index.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}
