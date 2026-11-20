@@ -72,7 +72,7 @@ one to patch it. *Import GDTF / OFL file…* (or dropping files on the dialog) a
 Open Fixture Library JSON; imported fixtures stay in the browser's library. A library fixture gets the programmer's
 attribute groups, colour mixing (per pixel or cell where it has several), effects and function lists from its channel
 chart. The show file carries the descriptions of the library fixtures it uses, so it opens anywhere, and **🎭 3D Stage**
-hands them to the simulator, which shows them with a stand-in body.
+hands them to the simulator, which shows them with a body generated from their kind and size.
 
 The library data and the two importers are copies of the simulator's, so that both programs read a fixture the same way:
 
