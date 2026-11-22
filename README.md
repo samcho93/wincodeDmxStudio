@@ -1,5 +1,7 @@
 # Wincode DMX Studio
 
+> Part of the **Wincode Lighting Suite** — all programs on one page: https://samcho93.github.io/wincodeSuite/
+
 A lighting console that runs in the browser: patch fixtures, build looks in a programmer, store them as groups, palettes
 and cues, add effects, and play it all back from faders — over a Virtual DMX cable to the
 [Wincode moving-head simulator](https://github.com/samcho93/wincodeMovingHead), or to real fixtures through Art-Net, sACN
